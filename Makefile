@@ -5,7 +5,7 @@ PDF=data/raw/code_de_la_route.pdf
 all: ingest index
 
 ingest:
-	python src/data/ingest_pdf.py --pdf $(PDF) --out_dir data/processed --chunk_size 1000 --overlap 200
+	python src/data/ingest_pdf.py --pdf $(PDF) --out_dir data/processed --chunk_size 1000 --overlap 200 --plan_pages 3 6
 
 index:
 	python src/data/indexing.py --chunks data/processed/chunks.jsonl --model all-MiniLM-L6-v2 --index_path data/index/faiss.index

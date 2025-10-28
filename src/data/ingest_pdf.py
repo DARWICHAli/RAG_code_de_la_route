@@ -1,94 +1,131 @@
-# src/data/ingest_pdf.py
 import os
-from pathlib import Path
-import argparse
-import PyPDF2
-import hashlib
-import json
 import re
+import json
+import hashlib
+import argparse
+from pathlib import Path
+import PyPDF2
 
-# Regex pour détecter sections
+
+# === REGEX DEFINITIONS ===
 SECTION_REGEX = {
-    "livre": re.compile(r"^Livre\s+\d", re.I),
-    "titre": re.compile(r"^Titre\s+\d", re.I),
-    "chapitre": re.compile(r"^Chapitre\s+\d", re.I),
-    "article": re.compile(r"L\.\s*\d[-\d]*", re.I),
+    "livre": re.compile(r"\bLivre\s+[IVX0-9er]+\b", re.I),
+    "titre": re.compile(r"\bTitre\s+[IVX0-9er]+\b", re.I),
+    "chapitre": re.compile(r"\bChapitre\s+[IVX0-9er]+\b", re.I),
+    "article": re.compile(r"\b[LRA]\.\s*\d+[-\d]*", re.I),
 }
 
-def load_pdf(path):
-    """Extract text from PDF pages."""
+PLAN_LINE_REGEX = re.compile(
+    r"^(?P<title>[\w\s\(\)\.\-:’'éèàâçîûô]+)\s+\.{5,}\s+(?P<page>\d+)$"
+)
+
+
+# === PDF LOADING ===
+def load_pdf(pdf_path):
+    """Extracts text from each page of the PDF."""
     pages = []
-    with open(path, "rb") as f:
+    with open(pdf_path, "rb") as f:
         reader = PyPDF2.PdfReader(f)
         for p in reader.pages:
-            pages.append(p.extract_text() or "")
+            text = p.extract_text() or ""
+            text = re.sub(r"\s+", " ", text.strip())
+            pages.append(text)
     return pages
 
-def parse_sections(text):
-    """Detect current Livre/Titre/Chapitre/Article in a text page."""
-    context = {}
-    for key, regex in SECTION_REGEX.items():
-        m = regex.search(text)
-        if m:
-            context[key] = m.group()
-    return context
 
-def chunk_text(pages, chunk_size=1000, overlap=200, context_prefix=""):
-    """Split text into chunks with context."""
+# === PLAN PARSER ===
+def parse_plan(pages):
+    """Extract structured plan lines (title, page) from plan pages."""
+    plan_items = []
+    for page_num, text in enumerate(pages, start=1):
+        for line in text.split("  "):
+            match = PLAN_LINE_REGEX.search(line.strip())
+            if match:
+                plan_items.append(
+                    {
+                        "title": match.group("title").strip(),
+                        "page": int(match.group("page")),
+                    }
+                )
+    return plan_items
+
+
+# === CODE CHUNKING ===
+def detect_sections(text, current_context):
+    """Update context (Livre, Titre, Chapitre, Article) based on text content."""
+    for key, regex in SECTION_REGEX.items():
+        match = regex.search(text)
+        if match:
+            current_context[key] = match.group()
+    return current_context
+
+
+def chunk_text(pages, chunk_size=1000, overlap=200, start_page=1):
+    """Split PDF text into chunks with hierarchical context."""
     chunks = []
     current_context = {}
-    
-    for i, page in enumerate(pages):
-        text = page.replace("\n", " ").strip()
-        # update context from text
-        new_context = parse_sections(text)
-        current_context.update(new_context)
-        
+
+    for i, page_text in enumerate(pages, start=start_page):
+        current_context = detect_sections(page_text, current_context)
+        text = page_text.replace("\n", " ").strip()
+
         start = 0
         while start < len(text):
             end = min(start + chunk_size, len(text))
-            chunk_text_piece = text[start:end]
+            part = text[start:end]
+
+            chunk_id = hashlib.sha1((str(i) + part[:60]).encode()).hexdigest()
             chunk = {
-                "id": hashlib.sha1((str(i)+chunk_text_piece[:50]).encode()).hexdigest(),
-                "page": i+1,
-                "context": context_prefix + " | ".join([f"{k}: {v}" for k,v in current_context.items()]),
-                "text": chunk_text_piece
+                "id": chunk_id,
+                "page": i,
+                "context": " | ".join(
+                    [f"{k.capitalize()}: {v}" for k, v in current_context.items()]
+                ),
+                "text": part,
             }
             chunks.append(chunk)
             start = max(end - overlap, end)
     return chunks
 
-def save_chunks(chunks, out_dir):
+
+# === MAIN ===
+def main(pdf_path, out_dir, chunk_size=1000, overlap=200, plan_pages=(3, 6)):
     Path(out_dir).mkdir(parents=True, exist_ok=True)
-    out_file = Path(out_dir) / "chunks.jsonl"
-    with open(out_file, "w", encoding="utf-8") as f:
-        for c in chunks:
-            f.write(json.dumps(c, ensure_ascii=False) + "\n")
-    print(f"Saved {len(chunks)} chunks to {out_file}")
+
+    # 1️⃣ Load PDF
+    pages = load_pdf(pdf_path)
+
+    # 2️⃣ Extract Plan (table of contents)
+    plan_start, plan_end = plan_pages
+    plan_pages_text = pages[plan_start - 1 : plan_end]
+    plan = parse_plan(plan_pages_text)
+    with open(Path(out_dir) / "plan.jsonl", "w", encoding="utf-8") as f:
+        for item in plan:
+            f.write(json.dumps(item, ensure_ascii=False) + "\n")
+    print(f"[✓] Saved {len(plan)} plan entries → {out_dir}/plan.jsonl")
+
+    # 3️⃣ Extract Code content (actual text)
+    code_pages = pages[plan_end:]
+    chunks = chunk_text(code_pages, chunk_size, overlap, start_page=plan_end + 1)
+    with open(Path(out_dir) / "chunks.jsonl", "w", encoding="utf-8") as f:
+        for chunk in chunks:
+            f.write(json.dumps(chunk, ensure_ascii=False) + "\n")
+    print(f"[✓] Saved {len(chunks)} chunks → {out_dir}/chunks.jsonl")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--pdf", required=True, help="Path to PDF file")
-    parser.add_argument("--out_dir", default="data/processed", help="Output folder")
+    parser.add_argument("--pdf", required=True, help="Path to the PDF file")
+    parser.add_argument("--out_dir", default="data/processed", help="Output directory")
     parser.add_argument("--chunk_size", type=int, default=1000)
     parser.add_argument("--overlap", type=int, default=200)
-    parser.add_argument("--plan_pages", type=int, nargs=2, default=[3,6],
-                        help="Pages containing the table of contents (1-indexed, inclusive)")
+    parser.add_argument("--plan_pages", type=int, nargs=2, default=[3, 6])
     args = parser.parse_args()
 
-    pages = load_pdf(args.pdf)
-
-    # Séparer plan et texte réel
-    plan_start, plan_end = args.plan_pages
-    plan_pages = pages[plan_start-1 : plan_end]  # 1-indexed
-    code_pages = pages[plan_end:]  # à partir de la page suivante
-
-    # Chunk plan séparément (facultatif)
-    plan_chunks = chunk_text(plan_pages, args.chunk_size, args.overlap, context_prefix="Table des matières | ")
-    code_chunks = chunk_text(code_pages, args.chunk_size, args.overlap)
-
-    # Combiner
-    chunks = plan_chunks + code_chunks
-
-    # Sauvegarder
-    save_chunks(chunks, args.out_dir)
+    main(
+        pdf_path=args.pdf,
+        out_dir=args.out_dir,
+        chunk_size=args.chunk_size,
+        overlap=args.overlap,
+        plan_pages=tuple(args.plan_pages),
+    )
