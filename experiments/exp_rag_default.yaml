@@ -1,0 +1,15 @@
+project: code-de-la-route-rag
+data:
+  chunks: data/processed/chunks.jsonl
+  index: data/index/faiss.index
+embed_model: all-MiniLM-L6-v2
+chunk_size: 1000
+overlap: 200
+retrieval:
+  top_k: 5
+  rerank: false
+generation:
+  model: openai-gpt-4.1-mini
+  temperature: 0.0
+safety:
+  min_retrieval_score: 0.2
