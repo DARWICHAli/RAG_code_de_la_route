@@ -1,0 +1,10 @@
+faiss-cpu
+sentence-transformers
+transformers
+torch
+fastapi
+uvicorn
+pyyaml
+mlflow
+PyPDF2
+requests

@@ -1,0 +1,5 @@
+generation:
+  backend: "huggingface"
+  model: "mistralai/Mistral-7B-Instruct-v0.3"
+  temperature: 0.0
+  max_new_tokens: 512
