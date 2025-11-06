@@ -46,7 +46,15 @@ def save_faiss_index(embeddings, chunks, out_dir):
     faiss.write_index(index, str(Path(out_dir) / "faiss_index.bin"))
     print(f"[✓] FAISS index saved → {out_dir}/faiss_index.bin")
 
-    metadata = {i: {"id": c["id"], "page": c["page"], "context": c["context"]} for i, c in enumerate(chunks)}
+    metadata = {i: {
+                    "id": c["id"],
+                    "page": c["page"], 
+                    "context": c["context"]
+                    "text": c["text"]
+                    } for i, c in enumerate(chunks)
+                }
+    
+    
     with open(Path(out_dir) / "metadata.json", "w", encoding="utf-8") as f:
         json.dump(metadata, f, ensure_ascii=False, indent=2)
     print(f"[✓] Metadata saved → {out_dir}/metadata.json")
