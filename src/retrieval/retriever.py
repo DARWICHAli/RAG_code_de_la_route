@@ -46,8 +46,8 @@ class RAGRetriever:
         return results
 
     def _get_text_from_chunk(self, idx):
-        # optional placeholder – could load full text if stored separately
-        return f"[Chunk {idx}] text not loaded (extend retriever to fetch full text)."
+        meta = self.metadata.get(str(idx)) or self.metadata.get(int(idx))
+        return meta.get("text", "")
 
 
 if __name__ == "__main__":
