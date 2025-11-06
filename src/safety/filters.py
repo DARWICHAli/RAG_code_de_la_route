@@ -13,11 +13,11 @@ import re
 SAFE_KEYWORDS = [
     "permis", "conduite", "véhicule", "points", "accident",
     "circulation", "infractions", "règles", "sécurité routière",
-    "contrôle", "code de la route", "amende", "signalisation"
+    "contrôle", "code de la route", "amende", "signalisation","piéton","passage","Stationnement","Stationner"
 ]
 
 # Optional: minimum fraction of keywords required to accept question
-MIN_KEYWORD_RATIO = 0.2
+MIN_KEYWORD_RATIO = 0.1
 
 
 def is_safe_question(question: str) -> bool:
@@ -29,6 +29,8 @@ def is_safe_question(question: str) -> bool:
     total_keywords = len(SAFE_KEYWORDS)
     matched = sum(1 for kw in SAFE_KEYWORDS if kw in question_lower)
     ratio = matched / total_keywords
+    print(ratio)
+    
     return ratio >= MIN_KEYWORD_RATIO
 
 

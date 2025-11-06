@@ -78,7 +78,7 @@ def run_rag_pipeline(
         print(f"Excerpt: {text_preview}")
 
     # 4️⃣ Generate answer
-    print("\n[INFO] Generating answer with Hugging Face model...")
+    print(f"\n[INFO] Generating answer with {generator_model} model...")
     answer = generator.generate(query, retrieved)
 
     # 5️⃣ Apply safety filter on output

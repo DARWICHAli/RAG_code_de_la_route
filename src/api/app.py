@@ -35,3 +35,10 @@ def ask(req: QueryReq):
     )
 
     return {"answer": answer}
+
+
+@app.get("/health")
+def health():
+    return {"status": "ok",
+            "retriever_model": "sentence-transformers/all-MiniLM-L6-v2",
+            "generator_model": "google/flan-t5-base"}

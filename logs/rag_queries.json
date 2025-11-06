@@ -33,5 +33,215 @@
     "retriever_model": "sentence-transformers/all-MiniLM-L6-v2",
     "generator_model": "google/flan-t5-base",
     "top_k": 5
+  },
+  {
+    "timestamp": "2025-11-06T23:27:58.627896",
+    "query": "Quelles sont les règles concernant le permis à points ?",
+    "retrieved": [
+      {
+        "page": 169,
+        "score": 0.6553943157196045,
+        "excerpt": "Partie réglementaire - Livre II : Le conducteur. - Titre II : Permis de conduire. lui est remis ou adressé par le service verbalisateur. Le droit d'accès aux informations ci-dessus mentionnées s'exerce dans les conditions fixées par les articles L. 2"
+      },
+      {
+        "page": 38,
+        "score": 0.6460728049278259,
+        "excerpt": "entionnée au premier alinéa, si le titulaire du permis de conduire n'a pas commis, dans cet intervalle, une infraction ayant donné lieu à un nouveau retrait de points. Le titulaire du permis de conduire qui a commis une infraction ayant donné lieu à "
+      },
+      {
+        "page": 168,
+        "score": 0.6445732712745667,
+        "excerpt": "bre maximal de points intervient dans les conditions définies à l'article L. 223-6. V.-Le délai probatoire de trois ans court à compter de la date d'obtention du permis de conduire, quelle qu'en soit la catégorie. Ce délai est réduit à deux ans ou, s"
+      },
+      {
+        "page": 36,
+        "score": 0.6434440016746521,
+        "excerpt": "is le début de la période probatoire. Lorsque le titulaire du permis de conduire a suivi l'apprentissage anticipé de la conduite défini à l'article L. 211-3, ce délai probatoire est réduit à deux ans et cette majoration est portée au quart du nombre "
+      },
+      {
+        "page": 168,
+        "score": 0.63929283618927,
+        "excerpt": "Partie réglementaire - Livre II : Le conducteur. - Titre II : Permis de conduire. Chapitre III : Permis à points. Section 1 : Principes généraux. R. 223-1 Décret n°2018-715 du 3 août 2018 - art. 2 Legif. Plan Jp.Judi. Jp.Admin. Juricaf I.-Le permis d"
+      }
+    ],
+    "answer": "Articles L. 225-1 à L. 225-9. III.-Lorsque le ministre de l'intérieur constate que la réalité d'une infraction entraînant retraite de points est établie dans les conditions prévues par le fourth alinéa de l'article L. 223-1, il réduit en conséquence le nombre de points affectés au permis de conduire de l'auteur de cette infraction. Si la retraite de points liée à cette infraction n'est pas à un nombre nul de points affectés au permis de conduire de l'auteur de cette infraction, celui-ci est informé par le ministre de l'intérieur par lettre simple de la nombre de points retirés. Le ministre de l'intérieur constate et notifie à l'intéressé, dans les mêmes conditions, les reconstitutions de points obtenues en application des premières, secondes, thirds et cin [Source p.38] mentionnées au premier alinéa, si le",
+    "retriever_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "generator_model": "google/flan-t5-base",
+    "top_k": 5
+  },
+  {
+    "timestamp": "2025-11-06T23:29:47.749180",
+    "query": "Quelles sont les règles concernant le permis à points ?",
+    "retrieved": [
+      {
+        "page": 169,
+        "score": 0.6553943157196045,
+        "excerpt": "Partie réglementaire - Livre II : Le conducteur. - Titre II : Permis de conduire. lui est remis ou adressé par le service verbalisateur. Le droit d'accès aux informations ci-dessus mentionnées s'exerce dans les conditions fixées par les articles L. 2"
+      },
+      {
+        "page": 38,
+        "score": 0.6460728049278259,
+        "excerpt": "entionnée au premier alinéa, si le titulaire du permis de conduire n'a pas commis, dans cet intervalle, une infraction ayant donné lieu à un nouveau retrait de points. Le titulaire du permis de conduire qui a commis une infraction ayant donné lieu à "
+      },
+      {
+        "page": 168,
+        "score": 0.6445732712745667,
+        "excerpt": "bre maximal de points intervient dans les conditions définies à l'article L. 223-6. V.-Le délai probatoire de trois ans court à compter de la date d'obtention du permis de conduire, quelle qu'en soit la catégorie. Ce délai est réduit à deux ans ou, s"
+      },
+      {
+        "page": 36,
+        "score": 0.6434440016746521,
+        "excerpt": "is le début de la période probatoire. Lorsque le titulaire du permis de conduire a suivi l'apprentissage anticipé de la conduite défini à l'article L. 211-3, ce délai probatoire est réduit à deux ans et cette majoration est portée au quart du nombre "
+      },
+      {
+        "page": 168,
+        "score": 0.63929283618927,
+        "excerpt": "Partie réglementaire - Livre II : Le conducteur. - Titre II : Permis de conduire. Chapitre III : Permis à points. Section 1 : Principes généraux. R. 223-1 Décret n°2018-715 du 3 août 2018 - art. 2 Legif. Plan Jp.Judi. Jp.Admin. Juricaf I.-Le permis d"
+      }
+    ],
+    "answer": "Articles L. 225-1 à L. 225-9. III.-Lorsque le ministre de l'intérieur constate que la réalité d'une infraction entraînant retraite de points est établie dans les conditions prévues par le fourth alinéa de l'article L. 223-1, il réduit en conséquence le nombre de points affectés au permis de conduire de l'auteur de cette infraction. Si la retraite de points liée à cette infraction n'est pas à un nombre nul de points affectés au permis de conduire de l'auteur de cette infraction, celui-ci est informé par le ministre de l'intérieur par lettre simple de la nombre de points retirés. Le ministre de l'intérieur constate et notifie à l'intéressé, dans les mêmes conditions, les reconstitutions de points obtenues en application des premières, secondes, thirds et cin [Source p.38] mentionnées au premier alinéa, si le",
+    "retriever_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "generator_model": "google/flan-t5-base",
+    "top_k": 5
+  },
+  {
+    "timestamp": "2025-11-06T23:30:39.824122",
+    "query": "Que faiQuelles sont les règles concernant le permis à points ?",
+    "retrieved": [
+      {
+        "page": 169,
+        "score": 0.6605962514877319,
+        "excerpt": "Partie réglementaire - Livre II : Le conducteur. - Titre II : Permis de conduire. lui est remis ou adressé par le service verbalisateur. Le droit d'accès aux informations ci-dessus mentionnées s'exerce dans les conditions fixées par les articles L. 2"
+      },
+      {
+        "page": 36,
+        "score": 0.656134307384491,
+        "excerpt": "is le début de la période probatoire. Lorsque le titulaire du permis de conduire a suivi l'apprentissage anticipé de la conduite défini à l'article L. 211-3, ce délai probatoire est réduit à deux ans et cette majoration est portée au quart du nombre "
+      },
+      {
+        "page": 38,
+        "score": 0.6553692817687988,
+        "excerpt": "entionnée au premier alinéa, si le titulaire du permis de conduire n'a pas commis, dans cet intervalle, une infraction ayant donné lieu à un nouveau retrait de points. Le titulaire du permis de conduire qui a commis une infraction ayant donné lieu à "
+      },
+      {
+        "page": 168,
+        "score": 0.6513453722000122,
+        "excerpt": "bre maximal de points intervient dans les conditions définies à l'article L. 223-6. V.-Le délai probatoire de trois ans court à compter de la date d'obtention du permis de conduire, quelle qu'en soit la catégorie. Ce délai est réduit à deux ans ou, s"
+      },
+      {
+        "page": 168,
+        "score": 0.6437098979949951,
+        "excerpt": "Partie réglementaire - Livre II : Le conducteur. - Titre II : Permis de conduire. Chapitre III : Permis à points. Section 1 : Principes généraux. R. 223-1 Décret n°2018-715 du 3 août 2018 - art. 2 Legif. Plan Jp.Judi. Jp.Admin. Juricaf I.-Le permis d"
+      }
+    ],
+    "answer": "Articles L. 225-1 à L. 225-9. III.-Lorsque le ministre de l'intérieur constate que la réalité d'une infraction entraînant retraite de points est établie dans les conditions prévues par le fourth alinéa de l'article L. 223-1, il réduit en conséquence le nombre de points affectés au permis de conduire de l'auteur de cette infraction. Si la retraite de points liée à cette infraction n'y a pas à un nombre nul de points affectés au permis de conduire de l'auteur de cette infraction, celui-ci est informé par le ministre de l'intérieur par lettre simple de la nombre de points retirés. Le ministre de l'intérieur constate et notifie à l'intéressé, dans les mêmes conditions, les reconstitutions de points obtenues en application of the first, second, third and cin [Source p.36] est le début de la période probatoire. Lorsque le titulaire de",
+    "retriever_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "generator_model": "google/flan-t5-base",
+    "top_k": 5
+  },
+  {
+    "timestamp": "2025-11-06T23:36:10.067565",
+    "query": "Que faiQuelles sont les règles concernant le permis à points ?",
+    "retrieved": [
+      {
+        "page": 169,
+        "score": 0.6605962514877319,
+        "excerpt": "Partie réglementaire - Livre II : Le conducteur. - Titre II : Permis de conduire. lui est remis ou adressé par le service verbalisateur. Le droit d'accès aux informations ci-dessus mentionnées s'exerce dans les conditions fixées par les articles L. 2"
+      },
+      {
+        "page": 36,
+        "score": 0.656134307384491,
+        "excerpt": "is le début de la période probatoire. Lorsque le titulaire du permis de conduire a suivi l'apprentissage anticipé de la conduite défini à l'article L. 211-3, ce délai probatoire est réduit à deux ans et cette majoration est portée au quart du nombre "
+      },
+      {
+        "page": 38,
+        "score": 0.6553692817687988,
+        "excerpt": "entionnée au premier alinéa, si le titulaire du permis de conduire n'a pas commis, dans cet intervalle, une infraction ayant donné lieu à un nouveau retrait de points. Le titulaire du permis de conduire qui a commis une infraction ayant donné lieu à "
+      },
+      {
+        "page": 168,
+        "score": 0.6513453722000122,
+        "excerpt": "bre maximal de points intervient dans les conditions définies à l'article L. 223-6. V.-Le délai probatoire de trois ans court à compter de la date d'obtention du permis de conduire, quelle qu'en soit la catégorie. Ce délai est réduit à deux ans ou, s"
+      },
+      {
+        "page": 168,
+        "score": 0.6437098979949951,
+        "excerpt": "Partie réglementaire - Livre II : Le conducteur. - Titre II : Permis de conduire. Chapitre III : Permis à points. Section 1 : Principes généraux. R. 223-1 Décret n°2018-715 du 3 août 2018 - art. 2 Legif. Plan Jp.Judi. Jp.Admin. Juricaf I.-Le permis d"
+      }
+    ],
+    "answer": "Articles L. 225-1 à L. 225-9. III.-Lorsque le ministre de l'intérieur constate que la réalité d'une infraction entraînant retraite de points est établie dans les conditions prévues par le fourth alinéa de l'article L. 223-1, il réduit en conséquence le nombre de points affectés au permis de conduire de l'auteur de cette infraction. Si la retraite de points liée à cette infraction n'y a pas à un nombre nul de points affectés au permis de conduire de l'auteur de cette infraction, celui-ci est informé par le ministre de l'intérieur par lettre simple de la nombre de points retirés. Le ministre de l'intérieur constate et notifie à l'intéressé, dans les mêmes conditions, les reconstitutions de points obtenues en application of the first, second, third and cin [Source p.36] est le début de la période probatoire. Lorsque le titulaire de",
+    "retriever_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "generator_model": "google/flan-t5-base",
+    "top_k": 5
+  },
+  {
+    "timestamp": "2025-11-06T23:42:04.185486",
+    "query": "Comment stationner avant le passage piéton",
+    "retrieved": [
+      {
+        "page": 97,
+        "score": 0.48947691917419434,
+        "excerpt": "spension provisoire de mise sur le marché, un rappel ou un retrait des produits non conformes, aux frais de l'opérateur économique. La durée de ces mesures conservatoires ne peut excéder quinze jours, renouvelables une fois. La procédure contradictoi"
+      },
+      {
+        "page": 374,
+        "score": 0.4760921597480774,
+        "excerpt": "tions utiles pour prévenir tout risque d'accident du fait de son absence. p.374 Code de la route"
+      },
+      {
+        "page": 349,
+        "score": 0.4576898217201233,
+        "excerpt": "résent article ne s'appliquent pas aux aires piétonnes et aux zones de rencontre. R. 412-38 DÉCRET n°2015-808 du 2 juillet 2015 - art. 7 Legif. Plan Jp.Judi. Jp.Admin. Juricaf Les feux de signalisation lumineux réglant la traversée des chaussées par "
+      },
+      {
+        "page": 375,
+        "score": 0.44054508209228516,
+        "excerpt": "Partie réglementaire - Livre IV : L'usage des voies. - Titre Ier : Dispositions générales. Le fait, pour tout conducteur, de contrevenir aux dispositions du présent article est puni de l'amende prévue pour les contraventions de la première classe. se"
+      },
+      {
+        "page": 371,
+        "score": 0.4391002058982849,
+        "excerpt": "mende prévue pour les contraventions de la quatrième classe. R. 416-14 Décret 2001-251 2001-03-22 JORF 25 mars 2001 Legif. Plan Jp.Judi. Jp.Admin. Juricaf Les remorques non accouplées à l'arrêt ou en stationnement sur la chaussée doivent être signalé"
+      }
+    ],
+    "answer": "Les feux de signalisation lumineux réglant la traversée des c",
+    "retriever_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "generator_model": "google/flan-t5-base",
+    "top_k": 5
+  },
+  {
+    "timestamp": "2025-11-06T23:43:18.989930",
+    "query": "est ce que je peux stationner avant le passage piéton",
+    "retrieved": [
+      {
+        "page": 349,
+        "score": 0.5454531908035278,
+        "excerpt": "résent article ne s'appliquent pas aux aires piétonnes et aux zones de rencontre. R. 412-38 DÉCRET n°2015-808 du 2 juillet 2015 - art. 7 Legif. Plan Jp.Judi. Jp.Admin. Juricaf Les feux de signalisation lumineux réglant la traversée des chaussées par "
+      },
+      {
+        "page": 347,
+        "score": 0.5256370306015015,
+        "excerpt": "ur piétons s'il précède le feu et, dans les autres cas, à l'aplomb du feu de signalisation. Sous réserve des articles R. 415-11 et R. 422-3, les dispositions du premier alinéa ne s'appliquent pas aux transports exceptionnels mentionnés à l'article R."
+      },
+      {
+        "page": 374,
+        "score": 0.5026892423629761,
+        "excerpt": "tions utiles pour prévenir tout risque d'accident du fait de son absence. p.374 Code de la route"
+      },
+      {
+        "page": 212,
+        "score": 0.5000839233398438,
+        "excerpt": "oteur à trois essieux avec semi-remorque à deux ou trois essieux transportant en opération de transport intermodal un ou plusieurs conteneurs ou caisses mobiles jusqu'à une longueur totale maximale de 13,72 mètres (45 pieds). II bis.-Pour l'applicati"
+      },
+      {
+        "page": 385,
+        "score": 0.4967004358768463,
+        "excerpt": " sécurité lorsque le véhicule a été réceptionné avec ce dispositif. p.385 Code de la route"
+      }
+    ],
+    "answer": "Articles R. 415-11 et R. 422-3, les dispositions du premier alinéa ne s'appliquent pas aux transports exceptionnels mentionnés.",
+    "retriever_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "generator_model": "google/flan-t5-base",
+    "top_k": 5
   }
 ]
