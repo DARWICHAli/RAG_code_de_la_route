@@ -10,6 +10,9 @@ CHUNKS=data/processed/chunks.jsonl
 INDEX_DIR=data/index
 MODEL_EMBED=sentence-transformers/all-MiniLM-L6-v2
 MODEL_GEN=google/flan-t5-base
+QUERY=Que faire en cas d'accident ?
+
+_QUERY := $(if $(QUERY),$(QUERY),$(DEFAULT_QUERY))
 
 # === Default target ===
 all: ingest index rag
@@ -45,7 +48,7 @@ rag:
 # 		--retriever_model $(MODEL_EMBED) \
 # 		--generator_model $(MODEL_GEN)
 	python -m src.generation.generate \
-		--query "Que faire en cas d'accident ?" \
+		--query "$(_QUERY)" \
 		--retriever_model $(MODEL_EMBED) \
 		--generator_model $(MODEL_GEN) \
 		--top_k 5
