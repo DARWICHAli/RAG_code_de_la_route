@@ -1,0 +1,37 @@
+[
+  {
+    "timestamp": "2025-11-06T23:15:58.218557",
+    "query": "Quelles sont les règles concernant le permis à points ?",
+    "retrieved": [
+      {
+        "page": 169,
+        "score": 0.6553943157196045,
+        "excerpt": "Partie réglementaire - Livre II : Le conducteur. - Titre II : Permis de conduire. lui est remis ou adressé par le service verbalisateur. Le droit d'accès aux informations ci-dessus mentionnées s'exerce dans les conditions fixées par les articles L. 2"
+      },
+      {
+        "page": 38,
+        "score": 0.6460726857185364,
+        "excerpt": "entionnée au premier alinéa, si le titulaire du permis de conduire n'a pas commis, dans cet intervalle, une infraction ayant donné lieu à un nouveau retrait de points. Le titulaire du permis de conduire qui a commis une infraction ayant donné lieu à "
+      },
+      {
+        "page": 168,
+        "score": 0.6445731520652771,
+        "excerpt": "bre maximal de points intervient dans les conditions définies à l'article L. 223-6. V.-Le délai probatoire de trois ans court à compter de la date d'obtention du permis de conduire, quelle qu'en soit la catégorie. Ce délai est réduit à deux ans ou, s"
+      },
+      {
+        "page": 36,
+        "score": 0.6434438824653625,
+        "excerpt": "is le début de la période probatoire. Lorsque le titulaire du permis de conduire a suivi l'apprentissage anticipé de la conduite défini à l'article L. 211-3, ce délai probatoire est réduit à deux ans et cette majoration est portée au quart du nombre "
+      },
+      {
+        "page": 168,
+        "score": 0.6392927169799805,
+        "excerpt": "Partie réglementaire - Livre II : Le conducteur. - Titre II : Permis de conduire. Chapitre III : Permis à points. Section 1 : Principes généraux. R. 223-1 Décret n°2018-715 du 3 août 2018 - art. 2 Legif. Plan Jp.Judi. Jp.Admin. Juricaf I.-Le permis d"
+      }
+    ],
+    "answer": "Articles L. 225-1 à L. 225-9. III.-Lorsque le ministre de l'intérieur constate que la réalité d'une infraction entraînant retraite de points est établie dans les conditions prévues par le fourth alinéa de l'article L. 223-1, il réduit en conséquence le nombre de points affectés au permis de conduire de l'auteur de cette infraction. Si la retraite de points liée à cette infraction n'est pas à un nombre nul de points affectés au permis de conduire de l'auteur de cette infraction, celui-ci est informé par le ministre de l'intérieur par lettre simple de la nombre de points retirés. Le ministre de l'intérieur constate et notifie à l'intéressé, dans les mêmes conditions, les reconstitutions de points obtenues en application des premières, secondes, thirds et cin [Source p.38] mentionnées au premier alinéa, si le",
+    "retriever_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "generator_model": "google/flan-t5-base",
+    "top_k": 5
+  }
+]
