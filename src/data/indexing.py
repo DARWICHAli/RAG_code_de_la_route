@@ -49,7 +49,7 @@ def save_faiss_index(embeddings, chunks, out_dir):
     metadata = {i: {
                     "id": c["id"],
                     "page": c["page"], 
-                    "context": c["context"]
+                    "context": c["context"],
                     "text": c["text"]
                     } for i, c in enumerate(chunks)
                 }
