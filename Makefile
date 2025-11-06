@@ -41,9 +41,16 @@ index:
 # ============================================
 rag:
 	@echo "[INFO] 💬 Running Hugging Face RAG pipeline..."
-	python -m src.generation.generate_hf \
+# 	python -m src.generation.generate \
+# 		--retriever_model $(MODEL_EMBED) \
+# 		--generator_model $(MODEL_GEN)
+	python -m src.generation.generate \
+		--query "Que faire en cas d'accident ?" \
 		--retriever_model $(MODEL_EMBED) \
-		--generator_model $(MODEL_GEN)
+		--generator_model $(MODEL_GEN) \
+		--top_k 5
+
+
 
 # ============================================
 # 🌐 API serving

@@ -1,13 +1,11 @@
 # src/api/app.py
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
-from src.retrieval.retriever import Retriever
-from src.generation.generate_hf import HuggingFaceGenerator
-from src.safety.filters import check_input, should_decline
+
+from src.generation.generate import run_rag_pipeline
+from src.safety.filters import is_safe_question
 
 app = FastAPI()
-retriever = Retriever(index_path="data/index/faiss.index")
-generator = HuggingFaceGenerator(model_name="mistralai/Mistral-7B-Instruct-v0.3")
 
 SYSTEM_PROMPT = (
     "Tu es un assistant expert du Code de la route français. "
@@ -17,18 +15,23 @@ SYSTEM_PROMPT = (
 class QueryReq(BaseModel):
     question: str
 
-@app.post("/chat")
-def chat(req: QueryReq):
-    ok, reason = check_input(req.question)
-    if not ok:
-        raise HTTPException(status_code=400, detail=reason)
+@app.post("/ask")
+def ask(req: QueryReq):
+    question = req.question.strip()
+    
+    # 1️⃣ Safety check avant pipeline
+    if not is_safe_question(question):
+        raise HTTPException(
+            status_code=400,
+            detail="Question hors-sujet détectée ! Je ne peux répondre qu'au Code de la Route."
+        )
 
-    retrieved = retriever.retrieve(req.question, top_k=5)
-    if should_decline(req.question, retrieved):
-        return {"answer": "Je ne peux pas répondre avec certitude. Consultez la source officielle.", "sources": []}
+    # 2️⃣ Run full RAG pipeline
+    answer = run_rag_pipeline(
+        query=question,
+        retriever_model="sentence-transformers/all-MiniLM-L6-v2",  # configurable
+        generator_model="google/flan-t5-base",                     # configurable
+        top_k=5
+    )
 
-    ans = generator.generate(req.question, retrieved, SYSTEM_PROMPT)
-    return {
-        "answer": ans,
-        "sources": [{"page": r["page"], "score": r["score"]} for r in retrieved],
-    }
+    return {"answer": answer}

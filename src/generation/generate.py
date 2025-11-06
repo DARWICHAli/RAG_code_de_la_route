@@ -1,14 +1,48 @@
 """
 RAG Orchestrator — Code de la Route
 -----------------------------------
-This script connects:
-1. Retriever (FAISS + Hugging Face embeddings)
-2. Generator (Hugging Face seq2seq model)
+Pipeline complet:
+1. Retriever (FAISS + embeddings)
+2. Generator (Hugging Face seq2seq)
+3. Safety Layer
+4. Logging (JSON)
 """
 
 import argparse
+import json
+from datetime import datetime
+from pathlib import Path
+
 from src.retrieval.retriever import RAGRetriever
 from src.generation.generate_hf import HFGenerator
+from src.safety.filters import is_safe_question, sanitize_response
+
+LOG_FILE = Path("logs/rag_queries.json")
+LOG_FILE.parent.mkdir(exist_ok=True)
+
+def log_query(query, retrieved, answer, retriever_model, generator_model, top_k):
+    """Append query, context, answer and params to JSON log"""
+    entry = {
+        "timestamp": datetime.utcnow().isoformat(),
+        "query": query,
+        "retrieved": [
+            {"page": r["page"], "score": r["score"], "excerpt": r["text"][:250]}
+            for r in retrieved
+        ],
+        "answer": answer,
+        "retriever_model": retriever_model,
+        "generator_model": generator_model,
+        "top_k": top_k
+    }
+
+    if LOG_FILE.exists():
+        data = json.loads(LOG_FILE.read_text())
+    else:
+        data = []
+
+    data.append(entry)
+    LOG_FILE.write_text(json.dumps(data, indent=2, ensure_ascii=False))
+
 
 
 def run_rag_pipeline(
@@ -17,8 +51,13 @@ def run_rag_pipeline(
     generator_model: str,
     top_k: int = 3,
 ):
-    """Run end-to-end retrieval + generation pipeline"""
+    """Run end-to-end retrieval + generation pipeline with safety and logging"""
     print("=== 🚦 RAG Code de la Route ===")
+
+    # Safety check
+    if not is_safe_question(query):
+        print("❌ Question hors-sujet détectée !")
+        return "Désolé, je ne peux répondre qu'aux questions sur le Code de la Route."
 
     # 1️⃣ Load retriever
     retriever = RAGRetriever(model_name=retriever_model)
@@ -42,10 +81,17 @@ def run_rag_pipeline(
     print("\n[INFO] Generating answer with Hugging Face model...")
     answer = generator.generate(query, retrieved)
 
+    # 5️⃣ Apply safety filter on output
+    answer = sanitize_response(answer)
+
     print("\n=== 💬 Final Answer ===")
     print(answer)
 
+    # 6️⃣ Log query
+    log_query(query, retrieved, answer, retriever_model, generator_model, top_k)
+
     return answer
+
 
 
 def main():
