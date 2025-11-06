@@ -34,7 +34,7 @@ class HFGenerator:
 
 
 if __name__ == "__main__":
-    from retrieval.retriever import RAGRetriever
+    from src.retrieval.retriever import RAGRetriever
 
     retriever = RAGRetriever()
     generator = HFGenerator()
