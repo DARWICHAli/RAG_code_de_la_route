@@ -1,0 +1,802 @@
+{
+  "global_scores": {
+    "exact_match": 0.0,
+    "f1": 0.06525128250563575,
+    "rougeL": 0.06815585158293708,
+    "bleu": 0.0044514656081001336
+  },
+  "details": [
+    {
+      "question": "Pourquoi doit-on régler la hauteur des feux ?",
+      "expected": "Pour ne pas éblouir les autres usagers",
+      "answer": "Le propriétaire du véhicule rembourse les frais de vente et de destruction des véhicules. R. 313-10 Décret n°2020-1088 du 24 août 2020 - art. 4 Legif. Plan Jp.Judi. Jp.Admin. Juricaf Feux de croisement. I.-Tout véhicule à moteur ou tout remorque, dont la largeur, chargement comprend, excède 2,10 mètres, doit être muni de deux feux visibles d'un remorque. I.-Sauf dispositions différentes prévues au présent article sont punis de l'amende prévue pour les contraventions de la quatrième classe.",
+      "retrieved_pages": [
+        370,
+        205,
+        222,
+        316,
+        226
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.04819277108433735,
+        "rougeL": 0.038461538461538464,
+        "bleu": 0.002838900295622135
+      }
+    },
+    {
+      "question": "Comment et pourquoi protéger une zone de danger en cas d’accident de la route ?",
+      "expected": "En délimitant clairement et largement la zone de danger de façon visible pour protéger les victimes et éviter un sur-accident",
+      "answer": "Le ministre de la Voirie a déclaré que le transporteur ne devrait pas être interdit sur le territoire national pendant une période de cinq ans. Le ministre de la Voirie a déclaré que le transporteur ne devrait pas être interdit en raison d'une blessure.",
+      "retrieved_pages": [
+        184,
+        39,
+        166,
+        19,
+        247
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.09374999999999999,
+        "rougeL": 0.08333333333333333,
+        "bleu": 0.005919382824640357
+      }
+    },
+    {
+      "question": "Pourquoi est-il préférable d’utiliser un liquide lave-glace spécial en hiver ?",
+      "expected": "Pour éviter le gel du liquide",
+      "answer": "Le ministre des Transports peut ordonner à l'annonceur de conduire sur une voie ferrée en hiver. Le ministre peut décider à son encontre de retirer l'agrément de réception des engins de circulation.",
+      "retrieved_pages": [
+        364,
+        259,
+        351,
+        350,
+        298
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.05263157894736842,
+        "rougeL": 0.04761904761904762,
+        "bleu": 0.005834347180338519
+      }
+    },
+    {
+      "question": "Quels comportements adopter en cas de diffusion du signal d’alerte du SAIP ?",
+      "expected": "Se mettre en sécurité, s’informer via médias/sites officiels, respecter les consignes des autorités",
+      "answer": "Le ministre des Transports peut prononcer une sanction pécuniaire en cas de violation des règles. Le véhicule doit être équipé d'un dispositif d'éclairage ou de signalisation. Les dispositifs doivent être conservés pendant un an au moins et gardés à la disposition des agents de constatation.",
+      "retrieved_pages": [
+        298,
+        250,
+        221,
+        241,
+        254
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.10344827586206898,
+        "rougeL": 0.11594202898550723,
+        "bleu": 0.005381887058206485
+      }
+    },
+    {
+      "question": "Quel est l’intérêt de la position nuit du rétroviseur ?",
+      "expected": "Ne pas être ébloui par les feux du véhicule suiveur",
+      "answer": "Le propriétaire du véhicule rembourse les frais précités au gardien de la fourrière. Les frais de mise en fourrière, de garde en fourrière, d'expertise et de destruction des véhicules sont fixés par décision du conseil des ministres de Polynésie française.",
+      "retrieved_pages": [
+        205,
+        248,
+        166,
+        138,
+        316
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.16000000000000003,
+        "rougeL": 0.09375,
+        "bleu": 0.011620839902894897
+      }
+    },
+    {
+      "question": "Citez un endroit où l’on peut trouver les pressions préconisées pour les pneumatiques ?",
+      "expected": "Sur une plaque sur une portière, dans la notice du véhicule ou au niveau de la trappe à carburant",
+      "answer": "Le titulaire doit s'assurer que les examens sont effectués conformément au premier alinéa du code de la route. Les autorités doivent également s'assurer que les mesures sont en vigueur. Les autorités doivent établir des règles d'autoroute sévères et sévères.",
+      "retrieved_pages": [
+        205,
+        166,
+        382,
+        70,
+        345
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.13793103448275865,
+        "rougeL": 0.08333333333333334,
+        "bleu": 0.011931001236437418
+      }
+    },
+    {
+      "question": "Sur autoroute, comment indiquer avec précision les lieux de l’accident depuis un téléphone portable ?",
+      "expected": "En indiquant le numéro de l’autoroute, le sens de circulation et le point kilométrique",
+      "answer": "L'autorité administrative interdit de circuler sur le territoire national pendant une période de cinq ans. La police peut l'autoriser à l'aide d'un téléphone ou d'un outil. Chaque véhicule à destination et en provenance de l'extérieur doit avoir une largeur de 200 mètres.",
+      "retrieved_pages": [
+        39,
+        340,
+        205,
+        379,
+        206
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.14285714285714285,
+        "rougeL": 0.11594202898550726,
+        "bleu": 0.006568301273760529
+      }
+    },
+    {
+      "question": "Comment détecter l’usure des essuie-glaces en circulation ?",
+      "expected": "En cas de pluie, lorsqu’ils laissent des traces sur le pare-brise",
+      "answer": "Le ministre des Transports a ordonné l'interdiction de la circulation sur les routes à sens unique et à plus de deux voies. Les autorités doivent s'assurer que les engins de circulation sont en bon état. Les engins de circulation comprenant deux remorques sont interdits sur les routes à sens unique et les routes à plus de deux voies.",
+      "retrieved_pages": [
+        351,
+        364,
+        346,
+        394,
+        389
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.14492753623188406,
+        "rougeL": 0.08571428571428572,
+        "bleu": 0.004707378393706195
+      }
+    },
+    {
+      "question": "Comment vérifier la respiration d’une victime ?",
+      "expected": "Regarder si le ventre et la poitrine se soulèvent et sentir de l’air à l’expiration",
+      "answer": "Titre 4 : Dispositions relatives à l'outre-mer par l'air expiré. Sur l'ordre et sous la responsabilité des officiers de police judiciaire, les agents de police judiciaire adjoints peuvent, même en l'absence d'infraction préalable ou d'accident, soumettre toute personne qui conduit un véhicule ou qui accompagne un élève conducteur à des épreuves de dépistage de l'imprégnation alcoolique par l'air expiré. Lorsque les délais impartis sont établis, l'étoile de l'étoile devient hors d'état de circuler dans des conditions normales de sécurité.",
+      "retrieved_pages": [
+        68,
+        66,
+        317,
+        325,
+        169
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.0851063829787234,
+        "rougeL": 0.10619469026548672,
+        "bleu": 0.0032453272391719675
+      }
+    },
+    {
+      "question": "Quelles sont les précautions à prendre en cas d’installation d’un porte-vélo ?",
+      "expected": "La plaque d’immatriculation et les feux doivent être visibles",
+      "answer": "Le ministre de la Voirie a déclaré que les autorités avaient besoin de plus de temps pour arrêter les véhicules. Le ministre de la Voirie a déclaré que les véhicules ne devraient pas être endommagés.",
+      "retrieved_pages": [
+        379,
+        241,
+        247,
+        396,
+        324
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.13636363636363638,
+        "rougeL": 0.15384615384615385,
+        "bleu": 0.006990006728332351
+      }
+    },
+    {
+      "question": "Qu’est-ce qu’une perte de connaissance ?",
+      "expected": "La victime ne répond pas, ne réagit pas, mais respire",
+      "answer": "Le conducteur est légalement interdit de demander l'annulation du permis de conduire pendant trois ans au plus. Le titulaire ne peut être exclu de la délivrance d'un nouveau permis pendant trois ans. Le titulaire ne peut être exclu de la délivrance d'un nouveau permis pendant trois ans.",
+      "retrieved_pages": [
+        185,
+        168,
+        45,
+        166,
+        71
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.07017543859649122,
+        "rougeL": 0.06153846153846154,
+        "bleu": 0.005145174324020217
+      }
+    },
+    {
+      "question": "En cas de panne ou d’accident, quel autre accessoire de sécurité est obligatoire ?",
+      "expected": "Le triangle de pré-signalisation",
+      "answer": "Le ministre de la sécurité routière fixe les conditions de l'examen et de l'échange. Le titulaire du permis de conduire doit porter une ceinture de sécurité homologuée dès que le siège est équipé en application des dispositifs. Le ministre de la sécurité routière a arrêté le ministre de la sécurité routière et a émis un avis.",
+      "retrieved_pages": [
+        172,
+        131,
+        171,
+        337,
+        167
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.06666666666666667,
+        "rougeL": 0.05405405405405405,
+        "bleu": 0.00388107836970323
+      }
+    },
+    {
+      "question": "Si un dégagement d’urgence de la victime est nécessaire, où doit-elle être déplacée ?",
+      "expected": "Dans un endroit suffisamment éloigné du danger et de ses conséquences",
+      "answer": "Le ministre de l'Intérieur peut demander l'examen technique ou l'expertise de l'agent de police judiciaire. Le conducteur peut être autorisé à faire appel à un professionnel qualifié pour la prise en remorque de son véhicule. L'immobilisation devient effective au lieu de réparation.",
+      "retrieved_pages": [
+        169,
+        13,
+        190,
+        60,
+        312
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.07547169811320754,
+        "rougeL": 0.06666666666666667,
+        "bleu": 0.005223577740745086
+      }
+    },
+    {
+      "question": "Quelle est la conséquence d’un niveau insuffisant du liquide de frein ?",
+      "expected": "Une perte d’efficacité du freinage",
+      "answer": "Le ministre des Transports peut ordonner à un conducteur de conduire un véhicule à moteur pour la conduite d'un véhicule à moteur. Cette mesure est prévue pour le samedi ou la veille de fête à 12 heures au lundi. Le montant de la sanction est proportionné à l'importance, à la fréquence et à la durée du manquement.",
+      "retrieved_pages": [
+        205,
+        298,
+        396,
+        341,
+        44
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.03225806451612903,
+        "rougeL": 0.0625,
+        "bleu": 0.0032047574588556275
+      }
+    },
+    {
+      "question": "En cas de panne ou d’accident, quel équipement de sécurité doit être porté avant de quitter le véhicule ?",
+      "expected": "Le gilet de haute visibilité",
+      "answer": "Le conducteur ou tout passager d'un véhicule à moteur doit porter une ceinture de sécurité homologuée dès que le siège qu'il occupe en est équipé en application des dispos... [Source p.337] Partie réglementaire - Livre II : Le véhicule. a) De dix jours pour un véhicule qu'un expert a estimé d'une valeur marchande inférieure à un montant fixé par le gouvernement de la Nouvelle-Calédonie. a) De quarante-cinq jours pour les autres cas, ces délais commençant à courir un jour franc après la date de notification.",
+      "retrieved_pages": [
+        184,
+        325,
+        132,
+        337,
+        108
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.044444444444444446,
+        "rougeL": 0.03809523809523809,
+        "bleu": 0.002532852851560384
+      }
+    },
+    {
+      "question": "Quels sont les deux autres documents obligatoires à présenter en cas de contrôle par les forces de l’ordre ?",
+      "expected": "L’attestation d’assurance et le permis de conduire",
+      "answer": "Le contrôle médical de l'aptitude à la conduite intervient à la suite d'une invalidation, d'une annulation ou d'une suspension du permis d'une durée de six mois ou plus. L'examen d'aptitude à la conduite est effectué à l'aide d'un examen psychotechnique. L'examen oral d'admission consiste en un entretien destiné à évaluer l'aptitude du candidat à animer un groupe de stagiaires.",
+      "retrieved_pages": [
+        31,
+        185,
+        172,
+        181,
+        273
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.09090909090909091,
+        "rougeL": 0.10389610389610389,
+        "bleu": 0.0040709389705793145
+      }
+    },
+    {
+      "question": "Pourquoi l’alerte auprès des services de secours doit-elle être rapide et précise ?",
+      "expected": "Pour permettre aux secours d’apporter les moyens adaptés aux victimes dans le délai le plus court",
+      "answer": "Le ministère de la Sécurité routière a arrêté le ministère de la Sécurité routière en mai 2016. Le titulaire de titres a été nommé par un employeur d'État. Il a été nommé par le ministre de la Sécurité routière en mai 2016.",
+      "retrieved_pages": [
+        139,
+        171,
+        147,
+        306,
+        128
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.034482758620689655,
+        "rougeL": 0.11267605633802817,
+        "bleu": 0.005223577740745086
+      }
+    },
+    {
+      "question": "Quel est le risque de circuler avec des balais d’essuie-glace défectueux ?",
+      "expected": "Une mauvaise visibilité en cas d’intempéries",
+      "answer": "Le conducteur aborde un carrefour à sens giratoire. - Titre 2 : Les frais de vente et de nettoyage sont également énumérés dans le texte. L'article n° 221-5 du 21 juin 2023 - art. 5 : Les règles d'immatriculation et de recyclage sont sévères.",
+      "retrieved_pages": [
+        367,
+        197,
+        316,
+        97,
+        35
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0,
+        "rougeL": 0.03636363636363636,
+        "bleu": 0
+      }
+    },
+    {
+      "question": "Quels sont les numéros d’urgence à composer ?",
+      "expected": "18 (pompiers), 15 (SAMU), 112 (urgence UE)",
+      "answer": "Le conducteur d'un tricycle à mote peut être arrêté pour avoir violé les règles de la loi. Il doit être âgé de 1 à 17 ans et être muni d'un remorque. Il doit être muni d'un outil p.205 Code de la route.",
+      "retrieved_pages": [
+        205,
+        166,
+        71,
+        140,
+        158
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0,
+        "rougeL": 0.0,
+        "bleu": 0
+      }
+    },
+    {
+      "question": "Quelles sont les précautions à prendre lors du remplissage du réservoir de carburant ?",
+      "expected": "Arrêter le moteur, ne pas fumer, ne pas téléphoner",
+      "answer": "Le véhicule à moteur doit être construit ou équipé de telle sorte que le champ de visibilité du conducteur soit en péril. Il doit être en place pendant un an au moins et gardé à l'écart des agents de constatation.",
+      "retrieved_pages": [
+        249,
+        396,
+        241,
+        238,
+        376
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.04081632653061225,
+        "rougeL": 0.11320754716981131,
+        "bleu": 0.004620856909230222
+      }
+    },
+    {
+      "question": "Quels comportements adopter en présence d’une victime qui ne répond pas, ne réagit pas mais respire ?",
+      "expected": "La mettre en position latérale de sécurité, alerter les secours, surveiller la respiration",
+      "answer": "Titre IV : Dispositions relatives à l'outre-mer. a) De la facture détaillée du réparateur certifiant l'exécution des travaux reconnus indispensables par l'expert. b) De quarante-cinq jours dans les autres cas, ces délais comprennent un jour franc après la date de notification. V.-Si le fichier... et 8° Nature et montant des frais qu'il sera tenu de rembourser.",
+      "retrieved_pages": [
+        325,
+        317,
+        13,
+        326,
+        205
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.08695652173913043,
+        "rougeL": 0.09756097560975609,
+        "bleu": 0.004615406011134244
+      }
+    },
+    {
+      "question": "Quel est le danger si l’on complète le niveau du liquide de refroidissement lorsque le moteur est chaud ?",
+      "expected": "Risque de brûlure",
+      "answer": "Le ministre des Transports peut ordonner à un conducteur de conduire un véhicule à moteur ou à traction animale de s'enfuir dans les conditions prévues au premier alinéa de l'article R. 313-27. Le véhicule doit être muni d'un accotement ou d'une bande à deux catadioptres avant, à la limite du gabarit, et réfléchir à une lumière blanche.",
+      "retrieved_pages": [
+        341,
+        298,
+        230,
+        342,
+        205
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.03333333333333333,
+        "rougeL": 0.029850746268656716,
+        "bleu": 0.0032047574588556275
+      }
+    },
+    {
+      "question": "Comment arrêter une hémorragie ?",
+      "expected": "En appuyant fortement sur la plaie avec un tissu propre",
+      "answer": "Le conducteur d'animaux isolés ou en groupe doit porter une lanterne allumée à l'arrière. Cette prescription ne s'applique pas aux cavaliers. Les autorités compétentes de l'État doivent délivrer les permis de conduire pour une durée de trois ans au plus.",
+      "retrieved_pages": [
+        353,
+        166,
+        138,
+        197,
+        396
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.04000000000000001,
+        "rougeL": 0.03333333333333333,
+        "bleu": 0.004620856909230222
+      }
+    },
+    {
+      "question": "Quelle peut être la conséquence d’une panne de dégivrage de la lunette arrière ?",
+      "expected": "Une insuffisance ou absence de visibilité vers l’arrière",
+      "answer": "Le conducteur doit être muni d'un panneau prévu à l'alinéa précédent. Le véhicule tracteur doit être muni de deux feux visibles d'une hauteur de 0,20 mètre. L'arrêté est assuré à chaque territoire mentionné au premier alinéa et en fonction du nombre d'examens qui y sont passés.",
+      "retrieved_pages": [
+        205,
+        226,
+        227,
+        166,
+        154
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.03703703703703704,
+        "rougeL": 0.08695652173913043,
+        "bleu": 0.003997395604823099
+      }
+    },
+    {
+      "question": "Hors autoroute ou endroit dangereux, où doit être placé le triangle de pré-signalisation ?",
+      "expected": "À environ 30 m de la panne/accident, ou avant un virage ou sommet de côte",
+      "answer": "Le transport de marchandises par voie d'eau à travers le pays est interdit pendant une période de trois mois. Les autorités doivent s'assurer que les mesures sont en vigueur. Selon le code de la route, les autorités doivent imposer des limites à la vitesse et aux conditions.",
+      "retrieved_pages": [
+        379,
+        356,
+        39,
+        213,
+        166
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.0967741935483871,
+        "rougeL": 0.06060606060606061,
+        "bleu": 0.009831839445040182
+      }
+    },
+    {
+      "question": "Quelle est la signification d’un clignotement plus rapide ?",
+      "expected": "Non-fonctionnement de l’une des ampoules",
+      "answer": "Le dispositif de freinage prévu au titre i est obligatoire pour les remorques à moteur et les semi-remorques. Le dispositif de freinage prévu au titre i est obligatoire pour les véhicules à moteur et les semi-remorques. Le dispositif de freinage prévu au titre i est obligatoire pour les véhicules à moteur et les semi-remorques.",
+      "retrieved_pages": [
+        185,
+        197,
+        71,
+        246,
+        136
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.03389830508474576,
+        "rougeL": 0.030303030303030297,
+        "bleu": 0.0033879673215127786
+      }
+    },
+    {
+      "question": "Quelles sont les conditions pour réaliser le dégagement d’urgence d’une victime ?",
+      "expected": "Victime visible, facile à atteindre, rien ne gêne le dégagement, sûr de pouvoir le réaliser",
+      "answer": "Le conducteur a été arrêté en vertu de l'article 235-11 de la loi sur la route française. La victime n'est pas indemnisée s'il a obtenu une réponse positive. La juridiction peut toutefois ne pas prononcer cette peine, par décision spécialement motivée.",
+      "retrieved_pages": [
+        190,
+        13,
+        52,
+        60,
+        136
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.14285714285714285,
+        "rougeL": 0.08571428571428573,
+        "bleu": 0.006369304104455854
+      }
+    },
+    {
+      "question": "Quelles sont les conditions à respecter pour contrôler le niveau d’huile ?",
+      "expected": "Moteur froid et sur un terrain plat",
+      "answer": "Le propriétaire d'un véhicule mentionné dans le chapitre est tenu de remettre ou de remettre à toutes les réquisitions des feuilles d'enregistrement de l'appareil de contrôle. Le contrôle doit être effectué à l'initiative du propriétaire et se dérouler dans les délais prescrits. Le véhicule doit être en bon état de marche et en état d'entretien.",
+      "retrieved_pages": [
+        269,
+        74,
+        267,
+        270,
+        311
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.032258064516129024,
+        "rougeL": 0.02702702702702703,
+        "bleu": 0.003324612889947367
+      }
+    },
+    {
+      "question": "Quelles sont les trois informations à transmettre aux services de secours ?",
+      "expected": "Numéro de téléphone, nature du problème, localisation précise",
+      "answer": "Le ministère de l'Intérieur a l'intention de mettre en place un mécanisme administratif pour l'enregistrement des données. Le ministère de l'Intérieur a l'intention de mettre en place un mécanisme de contrôle des données. Le ministère de l'Intérieur a l'intention de mettre en place un système de contrôle des données.",
+      "retrieved_pages": [
+        147,
+        306,
+        101,
+        171,
+        181
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.03508771929824561,
+        "rougeL": 0.07228915662650602,
+        "bleu": 0.0037447837904003834
+      }
+    },
+    {
+      "question": "Dans quels cas utilise-t-on les feux de brouillard arrière ?",
+      "expected": "Par temps de brouillard et neige",
+      "answer": "Le propriétaire du véhicule rembourse les frais de vente et de destruction des véhicules. iii. Les feux de brouillard arrière doivent être munis de deux feux visibles d'au moins 2,10 mètres. iii. Les feux de position peuvent être utilisés sur les véhicules qui ne peuvent pas atteindre une vitesse de 50 km / h.",
+      "retrieved_pages": [
+        205,
+        370,
+        316,
+        226,
+        396
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.09999999999999999,
+        "rougeL": 0.0588235294117647,
+        "bleu": 0.007929020238848623
+      }
+    },
+    {
+      "question": "Par quels moyens doit être réalisée l’alerte des secours ?",
+      "expected": "Téléphone portable, fixe ou borne d’appel d’urgence",
+      "answer": "Le propriétaire doit remettre au propriétaire le certificat d'immatriculation d'un véhicule en cours de validité. Le véhicule doit être soumis à un contrôle de sécurité routière. Le véhicule doit être livré dans des conditions normales de sécurité.",
+      "retrieved_pages": [
+        106,
+        325,
+        97,
+        132,
+        286
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0,
+        "rougeL": 0.06896551724137931,
+        "bleu": 0
+      }
+    },
+    {
+      "question": "À partir de quel taux d’alcoolémie en période de permis probatoire est-on en infraction ?",
+      "expected": "0,2 g/l (dès le 1er verre)",
+      "answer": "L'article 234-1 de la loi sur la sécurité routière interdit le conduire sous l'influence de l'alcool. L'article 234-1 stipule que le conducteur doit conduire un véhicule à moteur à l'aide d'un dispositif d'anti-démarrage par éthylotest électronique. L'interdiction s'applique à l'outre-mer, y compris les véhicules à moteur qui ne sont pas équipés d'un dispositif d'anti-démarrage par éthylotest électronique.",
+      "retrieved_pages": [
+        412,
+        34,
+        63,
+        153,
+        186
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.031746031746031744,
+        "rougeL": 0.06976744186046512,
+        "bleu": 0.0032047574588556275
+      }
+    },
+    {
+      "question": "Quel comportement doit-on adopter en présence d’une victime en arrêt cardiaque ?",
+      "expected": "ALERTER, MASSER, DEFIBRILLER",
+      "answer": "Le propriétaire doit remettre au service des domaines du territoire en vue de son aliénation, soit livré à la destruction. Selon le code de conduite, les véhicules doivent avoir un appareil de contrôle à l'intérieur duquel ils sont inscrits. Le véhicule doit être muni d'un certificat d'immatriculation et d'un permis de conduire en cours de validité correspondant à la catégorie du véhicule concerné.",
+      "retrieved_pages": [
+        325,
+        311,
+        317,
+        319,
+        286
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0,
+        "rougeL": 0.0,
+        "bleu": 0
+      }
+    },
+    {
+      "question": "Dans quels cas doit-on utiliser les feux de détresse ?",
+      "expected": "En cas de panne, d’accident ou de ralentissement important",
+      "answer": "Le conducteur doit informer le ministre des Transports. Les feux de position ne sont pas obligatoires dans les cas où le poids total autorisé en charge dépasse 1,5 tonne. Les feux de position ne sont pas obligatoires dans les cas où le conducteur a quitté un véhicule ou un cycliste isolé ou en groupe.",
+      "retrieved_pages": [
+        359,
+        342,
+        246,
+        370,
+        259
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.12698412698412698,
+        "rougeL": 0.08955223880597013,
+        "bleu": 0.00506619280504146
+      }
+    },
+    {
+      "question": "Dans quel cas peut-on positionner une victime en Position Latérale de Sécurité (PLS) ?",
+      "expected": "Si elle ne répond pas, ne réagit pas et respire",
+      "answer": "Le Code de la route français stipule que les personnes qui ont obtenu une reconnaissance de leurs qualifications professionnelles acquises dans d'autres États peuvent être indemnisées des dommages causés par des atteintes à leur personne qu'elles ont subies. Les autorités fédérales et provinciales s'inquiètent de l'utilisation abusive des médias sociaux.",
+      "retrieved_pages": [
+        13,
+        139,
+        169,
+        410,
+        172
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.03333333333333333,
+        "rougeL": 0.0547945205479452,
+        "bleu": 0.00366753025392797
+      }
+    },
+    {
+      "question": "Quel est le risque de circuler avec un frein de parking mal desserré ?",
+      "expected": "Dégradation du système de freinage",
+      "answer": "Le ministre des Transports a l'intention de mettre en place une procédure disciplinaire en cas de violation des règles du présent code. Le ministre peut être prié de s'abstenir de conduire un véhicule à moteur, à l'exception des véhicules agricoles ou des travaux publics.",
+      "retrieved_pages": [
+        247,
+        360,
+        97,
+        19,
+        294
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.0816326530612245,
+        "rougeL": 0.07017543859649124,
+        "bleu": 0.004977587797754485
+      }
+    },
+    {
+      "question": "Quelle est la conséquence d’une température trop élevée du liquide de refroidissement ?",
+      "expected": "Surchauffe ou casse moteur",
+      "answer": "Le ministre des Transports a ordonné l'interdiction de la circulation des ensembles de véhicules comprenant deux remorques. Les engins de circulation doivent être enlevés pendant un an au moins et gardés à l'écart des engins de circulation.",
+      "retrieved_pages": [
+        53,
+        394,
+        241,
+        414,
+        351
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0,
+        "rougeL": 0.0,
+        "bleu": 0
+      }
+    },
+    {
+      "question": "Lors d’un appel avec les services de secours, pourquoi attendre que le correspondant autorise à raccrocher ?",
+      "expected": "Il peut guider ou conseiller jusqu’à l’arrivée des secours",
+      "answer": "Le ministère de la Sécurité routière a arrêté le ministère de la Sécurité routière en mai. Le ministère de la Sécurité routière a émis un avis à l'intention des autorités fédérales. Le ministère de la Sécurité routière a émis un avis à l'intention des autorités fédérales.",
+      "retrieved_pages": [
+        306,
+        172,
+        139,
+        253,
+        171
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.03636363636363637,
+        "rougeL": 0.052631578947368425,
+        "bleu": 0.003997395604823099
+      }
+    },
+    {
+      "question": "Pourquoi est-il important de bien régler son volant ?",
+      "expected": "Confort de conduite, accessibilité aux commandes, visibilité du tableau de bord, efficacité des airbags",
+      "answer": "Le ministre des Transports peut ordonner à l'annonceur de ne pas se conformer à la disposition du second alinéa. Le conducteur s'est rendu sur la route à sa droite et a déclaré qu'il avait l'intention de s'envoler dans des conditions normales. Le ministre peut en appeler à l'audience et décider de l'amende.",
+      "retrieved_pages": [
+        365,
+        205,
+        259,
+        325,
+        298
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.09090909090909091,
+        "rougeL": 0.1111111111111111,
+        "bleu": 0.0049811554679751145
+      }
+    },
+    {
+      "question": "Quels sont les risques de circuler avec des objets sur la plage arrière ?",
+      "expected": "Mauvaise visibilité vers l’arrière, risque de projection en cas de freinage ou choc",
+      "answer": "Le véhicule en état d'arrêt est automatiquement arrêté par un système de conduite automatisé. Le véhicule en état d'arrêt est automatiquement arrêté à l'aide d'un dispositif de conduite automatisé. Le véhicule en état d'arrêt est en état d'arrêt à l'aide d'un dispositif de conduite automatisé.",
+      "retrieved_pages": [
+        313,
+        269,
+        209,
+        205,
+        108
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.06896551724137931,
+        "rougeL": 0.10526315789473684,
+        "bleu": 0.005381887058206485
+      }
+    },
+    {
+      "question": "Quelle est la principale conséquence d’un dispositif de lave-glace défaillant ?",
+      "expected": "Mauvaise visibilité",
+      "answer": "Le dispositif de freinage prévu au Titre IV n'est pas obligatoire sur les remorques à double sens de circulation. Le dispositif d'attelage et d'attache secondaire ne peut être utilisé que si le poids total autorisé en charge dépasse 1,5 tonne. Le dispositif ne peut être utilisé que dans les virages et les virages à l'extrémité d'une côte.",
+      "retrieved_pages": [
+        246,
+        259,
+        363,
+        115,
+        365
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0,
+        "rougeL": 0.0,
+        "bleu": 0
+      }
+    },
+    {
+      "question": "Qu’est-ce qu’un défibrillateur automatisé externe (DAE) ?",
+      "expected": "Appareil permettant de rétablir une activité cardiaque normale à une victime en arrêt cardiaque",
+      "answer": "Le médecin agréé peut demander au préfet de convoquer la personne examinée à la commission médicale primaire. Le contrôle médical de l'aptitude à la conduite intervient à la suite d'une invalidation, d'une annulation ou d'une suspension du permis. Le médecin agréé peut demander au préfet de convoquer la personne examinée devant la commission médicale primaire.",
+      "retrieved_pages": [
+        181,
+        279,
+        74,
+        200,
+        182
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.05797101449275361,
+        "rougeL": 0.07407407407407407,
+        "bleu": 0.00395365330335517
+      }
+    },
+    {
+      "question": "Quel est l’intérêt de la position nuit du rétroviseur intérieur ?",
+      "expected": "Ne pas être ébloui par les feux du véhicule suiveur",
+      "answer": "Le propriétaire du véhicule doit payer les frais de vente et de réparation. Les autorités compétentes de l'État doivent délivrer les attestations de compétence. - à l'usage de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de l'enseignant, de",
+      "retrieved_pages": [
+        205,
+        248,
+        138,
+        316,
+        166
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.05660377358490566,
+        "rougeL": 0.04054054054054055,
+        "bleu": 0.004404320385780667
+      }
+    },
+    {
+      "question": "Quelle est l’utilité de l’appuie-tête ?",
+      "expected": "Retenir le mouvement de la tête en cas de choc et limiter les blessures",
+      "answer": "Le code de la route français interdit la vente, l'offre ou la mise en service de pièces ou d'équipements susceptibles de présenter un risque important pour le bon fonctionnement de systèmes essentiels à la sécurité ou à la performance environnementale d'un véhicule. - l'admission à un groupe de stagiaires. - l'admission à un groupe de stagiaires. - l'admission à un groupe de stagiaires. - l'admission à un groupe de stagiaires. - l'admission à un groupe de stagiaires.",
+      "retrieved_pages": [
+        140,
+        253,
+        205,
+        246,
+        172
+      ],
+      "metrics": {
+        "exact_match": 0.0,
+        "f1": 0.08791208791208792,
+        "rougeL": 0.10638297872340426,
+        "bleu": 0.006263876347887394
+      }
+    }
+  ]
+}

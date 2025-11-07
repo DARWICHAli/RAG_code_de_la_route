@@ -1,102 +1,129 @@
+"""
+Évaluation du système RAG — Code de la route
+--------------------------------------------
+- Évalue la qualité de génération (Exact Match, F1, ROUGE, BLEU)
+- Compatible avec RAGGenerator et RAGRetriever
+- Supporte holdout JSONL simple (question + expected_answer)
+"""
+
 import json
 import os
 from tqdm import tqdm
+from typing import List, Dict
+from sklearn.metrics import f1_score
 from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from rouge_score import rouge_scorer
-from sklearn.metrics import f1_score
-from collections import Counter
-import numpy as np
 
 from src.retrieval.retriever import RAGRetriever
-from src.generation.generate_hf import HuggingFaceGenerator
+from src.generation.generate import RAGGenerator
 
+# =====================
+# Helpers
+# =====================
 
-def normalize_text(s):
-    """Basic cleanup for text comparison."""
-    import re, string
-    s = s.lower().strip()
-    s = re.sub(rf"[{string.punctuation}]", "", s)
-    s = re.sub(r"\s+", " ", s)
-    return s
+def load_holdout(path: str) -> List[Dict]:
+    """Charge le jeu de test JSONL (question, expected_answer)."""
+    samples = []
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            data = json.loads(line)
+            if all(k in data for k in ["question", "expected_answer"]):
+                samples.append(data)
+    return samples
 
+def compute_metrics(pred: str, ref: str) -> Dict[str, float]:
+    """Calcule Exact Match, F1, ROUGE-L et BLEU."""
+    pred_tokens = pred.lower().split()
+    ref_tokens = ref.lower().split()
 
-def exact_match(pred, ref):
-    return normalize_text(pred) == normalize_text(ref)
+    exact = 1.0 if pred.strip().lower() == ref.strip().lower() else 0.0
 
+    common = set(pred_tokens) & set(ref_tokens)
+    precision = len(common) / len(pred_tokens) if pred_tokens else 0
+    recall = len(common) / len(ref_tokens) if ref_tokens else 0
+    f1 = 2 * precision * recall / (precision + recall) if (precision + recall) else 0
 
-def f1(pred, ref):
-    """Token-level F1 score."""
-    pred_tokens = normalize_text(pred).split()
-    ref_tokens = normalize_text(ref).split()
-    common = Counter(pred_tokens) & Counter(ref_tokens)
-    num_same = sum(common.values())
-    if num_same == 0:
-        return 0.0
-    precision = num_same / len(pred_tokens)
-    recall = num_same / len(ref_tokens)
-    return 2 * precision * recall / (precision + recall)
+    rouge = rouge_scorer.RougeScorer(["rougeL"], use_stemmer=True)
+    rouge_l = rouge.score(ref, pred)["rougeL"].fmeasure
 
+    bleu = sentence_bleu(
+        [ref_tokens],
+        pred_tokens,
+        smoothing_function=SmoothingFunction().method1
+    )
 
-def evaluate(model_name="google/flan-t5-base",
-             index_path="data/index/faiss.index",
-             holdout_path="data/holdout/holdout.jsonl",
-             output_path="experiments/eval_results.json",
-             top_k=5):
+    return {
+        "exact_match": exact,
+        "f1": f1,
+        "rougeL": rouge_l,
+        "bleu": bleu
+    }
 
-    print("[INFO] Loading retriever and generator...")
+# =====================
+# Main evaluation
+# =====================
+
+def evaluate(
+    holdout_path: str,
+    index_path: str,
+    model_name: str,
+    output_path: str = "experiments/results_eval.json",
+    top_k: int = 5
+):
+    print("[INFO] Chargement du retriever et du générateur...")
     retriever = RAGRetriever(index_path=index_path)
-    generator = HuggingFaceGenerator(model_name=model_name)
+    generator = RAGGenerator(model_name=model_name)
 
-    # Load holdout QA pairs
-    with open(holdout_path, "r", encoding="utf-8") as f:
-        data = [json.loads(line) for line in f]
+    samples = load_holdout(holdout_path)
+    print(f"[INFO] {len(samples)} questions de test chargées.\n")
 
     results = []
-    rouge = rouge_scorer.RougeScorer(["rougeL"], use_stemmer=True)
-    smooth_fn = SmoothingFunction().method1
+    agg_scores = {"exact_match": 0, "f1": 0, "rougeL": 0, "bleu": 0}
 
-    for item in tqdm(data, desc="Evaluating RAG"):
-        question, ref = item["question"], item["answer"]
+    for s in tqdm(samples, desc="Évaluation RAG"):
+        question = s["question"]
+        expected = s["expected_answer"]
 
-        # Retrieve context
         retrieved = retriever.retrieve(question, top_k=top_k)
-        # Generate answer
-        pred = generator.generate(question, retrieved)
+        answer = generator.generate(
+            question,
+            retrieved,
+            system_prompt="Tu es un assistant du Code de la route français."
+        )
 
-        # Compute metrics
-        em = exact_match(pred, ref)
-        f1_val = f1(pred, ref)
-        rougeL = rouge.score(ref, pred)["rougeL"].fmeasure
-        bleu = sentence_bleu([ref.split()], pred.split(), smoothing_function=smooth_fn)
+        metrics = compute_metrics(answer, expected)
+        for k in agg_scores:
+            agg_scores[k] += metrics[k]
 
         results.append({
             "question": question,
-            "ref": ref,
-            "pred": pred,
-            "exact_match": em,
-            "f1": f1_val,
-            "rougeL": rougeL,
-            "bleu": bleu
+            "expected": expected,
+            "answer": answer,
+            "retrieved_pages": [r["page"] for r in retrieved],
+            "metrics": metrics
         })
 
-    # Aggregate results
-    metrics = {
-        "exact_match": np.mean([r["exact_match"] for r in results]),
-        "f1": np.mean([r["f1"] for r in results]),
-        "rougeL": np.mean([r["rougeL"] for r in results]),
-        "bleu": np.mean([r["bleu"] for r in results]),
-    }
+    # Moyenne globale
+    for k in agg_scores:
+        agg_scores[k] /= len(samples)
+
+    print("\n=== Résultats globaux ===")
+    for k, v in agg_scores.items():
+        print(f"{k}: {v:.3f}")
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
-        json.dump({"metrics": metrics, "details": results}, f, indent=2, ensure_ascii=False)
+        json.dump({
+            "global_scores": agg_scores,
+            "details": results
+        }, f, ensure_ascii=False, indent=2)
 
-    print("\n=== Résultats globaux ===")
-    for k, v in metrics.items():
-        print(f"{k}: {v:.4f}")
-
-    print(f"\n[DONE] Résultats sauvegardés dans {output_path}")
+    print(f"\n[INFO] Évaluation terminée — résultats sauvegardés dans {output_path}")
 
 
 if __name__ == "__main__":
-    evaluate()
+    evaluate(
+        holdout_path="data/eval/holdout.jsonl",
+        index_path="data/index/faiss.index",
+        model_name="plguillou/t5-base-fr-sum-cnndm"
+    )

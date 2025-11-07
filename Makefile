@@ -76,11 +76,9 @@ serve:
 # ============================================
 eval:
 	@echo "[INFO] 📊 Running evaluation pipeline..."
-# 	python -m src.eval.evaluate \
-# 		--config experiments/exp_rag_default.yaml
-	python src/eval/evaluate.py \
-		--model_name google/flan-t5-base 
-		--index_path $(INDEX) 
+	python -m src.eval.evaluate \
+		--model_name $(MODEL_GEN) \
+		--index_path $(INDEX) \
 		--holdout_path $(HOLDOUT)
 
 # ============================================

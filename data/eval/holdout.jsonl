@@ -1,2 +1,44 @@
-{"id":"q1","question":"Quelle est la vitesse maximale en agglomération?","answer":"50 km/h","answer_pages":[45]}
-{"id":"q2","question":"Que faire après un accident?","answer":"Sécuriser, alerter, porter secours","answer_pages":[169,170]}
+{"question": "Pourquoi doit-on régler la hauteur des feux ?", "expected_answer": "Pour ne pas éblouir les autres usagers"}
+{"question": "Comment et pourquoi protéger une zone de danger en cas d’accident de la route ?", "expected_answer": "En délimitant clairement et largement la zone de danger de façon visible pour protéger les victimes et éviter un sur-accident"}
+{"question": "Pourquoi est-il préférable d’utiliser un liquide lave-glace spécial en hiver ?", "expected_answer": "Pour éviter le gel du liquide"}
+{"question": "Quels comportements adopter en cas de diffusion du signal d’alerte du SAIP ?", "expected_answer": "Se mettre en sécurité, s’informer via médias/sites officiels, respecter les consignes des autorités"}
+{"question": "Quel est l’intérêt de la position nuit du rétroviseur ?", "expected_answer": "Ne pas être ébloui par les feux du véhicule suiveur"}
+{"question": "Citez un endroit où l’on peut trouver les pressions préconisées pour les pneumatiques ?", "expected_answer": "Sur une plaque sur une portière, dans la notice du véhicule ou au niveau de la trappe à carburant"}
+{"question": "Sur autoroute, comment indiquer avec précision les lieux de l’accident depuis un téléphone portable ?", "expected_answer": "En indiquant le numéro de l’autoroute, le sens de circulation et le point kilométrique"}
+{"question": "Comment détecter l’usure des essuie-glaces en circulation ?", "expected_answer": "En cas de pluie, lorsqu’ils laissent des traces sur le pare-brise"}
+{"question": "Comment vérifier la respiration d’une victime ?", "expected_answer": "Regarder si le ventre et la poitrine se soulèvent et sentir de l’air à l’expiration"}
+{"question": "Quelles sont les précautions à prendre en cas d’installation d’un porte-vélo ?", "expected_answer": "La plaque d’immatriculation et les feux doivent être visibles"}
+{"question": "Qu’est-ce qu’une perte de connaissance ?", "expected_answer": "La victime ne répond pas, ne réagit pas, mais respire"}
+{"question": "En cas de panne ou d’accident, quel autre accessoire de sécurité est obligatoire ?", "expected_answer": "Le triangle de pré-signalisation"}
+{"question": "Si un dégagement d’urgence de la victime est nécessaire, où doit-elle être déplacée ?", "expected_answer": "Dans un endroit suffisamment éloigné du danger et de ses conséquences"}
+{"question": "Quelle est la conséquence d’un niveau insuffisant du liquide de frein ?", "expected_answer": "Une perte d’efficacité du freinage"}
+{"question": "En cas de panne ou d’accident, quel équipement de sécurité doit être porté avant de quitter le véhicule ?", "expected_answer": "Le gilet de haute visibilité"}
+{"question": "Quels sont les deux autres documents obligatoires à présenter en cas de contrôle par les forces de l’ordre ?", "expected_answer": "L’attestation d’assurance et le permis de conduire"}
+{"question": "Pourquoi l’alerte auprès des services de secours doit-elle être rapide et précise ?", "expected_answer": "Pour permettre aux secours d’apporter les moyens adaptés aux victimes dans le délai le plus court"}
+{"question": "Quel est le risque de circuler avec des balais d’essuie-glace défectueux ?", "expected_answer": "Une mauvaise visibilité en cas d’intempéries"}
+{"question": "Quels sont les numéros d’urgence à composer ?", "expected_answer": "18 (pompiers), 15 (SAMU), 112 (urgence UE)"}
+{"question": "Quelles sont les précautions à prendre lors du remplissage du réservoir de carburant ?", "expected_answer": "Arrêter le moteur, ne pas fumer, ne pas téléphoner"}
+{"question": "Quels comportements adopter en présence d’une victime qui ne répond pas, ne réagit pas mais respire ?", "expected_answer": "La mettre en position latérale de sécurité, alerter les secours, surveiller la respiration"}
+{"question": "Quel est le danger si l’on complète le niveau du liquide de refroidissement lorsque le moteur est chaud ?", "expected_answer": "Risque de brûlure"}
+{"question": "Comment arrêter une hémorragie ?", "expected_answer": "En appuyant fortement sur la plaie avec un tissu propre"}
+{"question": "Quelle peut être la conséquence d’une panne de dégivrage de la lunette arrière ?", "expected_answer": "Une insuffisance ou absence de visibilité vers l’arrière"}
+{"question": "Hors autoroute ou endroit dangereux, où doit être placé le triangle de pré-signalisation ?", "expected_answer": "À environ 30 m de la panne/accident, ou avant un virage ou sommet de côte"}
+{"question": "Quelle est la signification d’un clignotement plus rapide ?", "expected_answer": "Non-fonctionnement de l’une des ampoules"}
+{"question": "Quelles sont les conditions pour réaliser le dégagement d’urgence d’une victime ?", "expected_answer": "Victime visible, facile à atteindre, rien ne gêne le dégagement, sûr de pouvoir le réaliser"}
+{"question": "Quelles sont les conditions à respecter pour contrôler le niveau d’huile ?", "expected_answer": "Moteur froid et sur un terrain plat"}
+{"question": "Quelles sont les trois informations à transmettre aux services de secours ?", "expected_answer": "Numéro de téléphone, nature du problème, localisation précise"}
+{"question": "Dans quels cas utilise-t-on les feux de brouillard arrière ?", "expected_answer": "Par temps de brouillard et neige"}
+{"question": "Par quels moyens doit être réalisée l’alerte des secours ?", "expected_answer": "Téléphone portable, fixe ou borne d’appel d’urgence"}
+{"question": "À partir de quel taux d’alcoolémie en période de permis probatoire est-on en infraction ?", "expected_answer": "0,2 g/l (dès le 1er verre)"}
+{"question": "Quel comportement doit-on adopter en présence d’une victime en arrêt cardiaque ?", "expected_answer": "ALERTER, MASSER, DEFIBRILLER"}
+{"question": "Dans quels cas doit-on utiliser les feux de détresse ?", "expected_answer": "En cas de panne, d’accident ou de ralentissement important"}
+{"question": "Dans quel cas peut-on positionner une victime en Position Latérale de Sécurité (PLS) ?", "expected_answer": "Si elle ne répond pas, ne réagit pas et respire"}
+{"question": "Quel est le risque de circuler avec un frein de parking mal desserré ?", "expected_answer": "Dégradation du système de freinage"}
+{"question": "Quelle est la conséquence d’une température trop élevée du liquide de refroidissement ?", "expected_answer": "Surchauffe ou casse moteur"}
+{"question": "Lors d’un appel avec les services de secours, pourquoi attendre que le correspondant autorise à raccrocher ?", "expected_answer": "Il peut guider ou conseiller jusqu’à l’arrivée des secours"}
+{"question": "Pourquoi est-il important de bien régler son volant ?", "expected_answer": "Confort de conduite, accessibilité aux commandes, visibilité du tableau de bord, efficacité des airbags"}
+{"question": "Quels sont les risques de circuler avec des objets sur la plage arrière ?", "expected_answer": "Mauvaise visibilité vers l’arrière, risque de projection en cas de freinage ou choc"}
+{"question": "Quelle est la principale conséquence d’un dispositif de lave-glace défaillant ?", "expected_answer": "Mauvaise visibilité"}
+{"question": "Qu’est-ce qu’un défibrillateur automatisé externe (DAE) ?", "expected_answer": "Appareil permettant de rétablir une activité cardiaque normale à une victime en arrêt cardiaque"}
+{"question": "Quel est l’intérêt de la position nuit du rétroviseur intérieur ?", "expected_answer": "Ne pas être ébloui par les feux du véhicule suiveur"}
+{"question": "Quelle est l’utilité de l’appuie-tête ?", "expected_answer": "Retenir le mouvement de la tête en cas de choc et limiter les blessures"}
