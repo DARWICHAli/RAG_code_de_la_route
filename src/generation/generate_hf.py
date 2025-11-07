@@ -1,47 +1,32 @@
-# src/generation/generate_hf.py
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+import torch
+from tqdm import tqdm
 
-
-class HFGenerator:
-    def __init__(self, model_name="google/flan-t5-base", max_input_tokens=1024, max_output_tokens=256):
-        print(f"[INFO] Loading generation model: {model_name}")
+class HuggingFaceGenerator:
+    def __init__(self, model_name="google/flan-t5-base", device=None):
         self.model_name = model_name
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
-        self.pipe = pipeline("text2text-generation", model=self.model, tokenizer=self.tokenizer)
-        self.max_input_tokens = max_input_tokens
-        self.max_output_tokens = max_output_tokens
+        self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        self.model.to(self.device)
+        print(f"[INFO] Loaded generation model: {model_name} on {self.device}")
 
-    def build_prompt(self, query, retrieved_chunks):
-        context_texts = "\n\n".join([f"[Source p.{r['page']}] {r['text']}" for r in retrieved_chunks])
-        prompt = (
-            "Tu es un assistant expert du Code de la Route français.\n"
-            "Réponds à la question suivante en t'appuyant uniquement sur les extraits donnés.\n\n"
-            f"Question : {query}\n\n"
-            f"Extraits :\n{context_texts}\n\n"
-            "Réponse :"
+    def _build_prompt(self, question, retrieved, system_prompt=None):
+        context = "\n\n".join([f"[Source p.{r['page']}] {r['text']}" for r in retrieved])
+        return (
+            (system_prompt or "Réponds uniquement à partir du contexte suivant :\n\n")
+            + f"{context}\n\nQuestion: {question}\nRéponse:"
         )
-        return prompt
 
-    def generate(self, query, retrieved_chunks):
-        prompt = self.build_prompt(query, retrieved_chunks)
-        response = self.pipe(
-            prompt,
-            max_new_tokens=self.max_output_tokens,
-            truncation=True,
-        )[0]["generated_text"]
-        return response
-
-
-if __name__ == "__main__":
-    from src.retrieval.retriever import RAGRetriever
-
-    retriever = RAGRetriever()
-    generator = HFGenerator()
-
-    query = "Quelles sont les règles concernant le permis à points ?"
-    retrieved = retriever.retrieve(query, top_k=3)
-    answer = generator.generate(query, retrieved)
-
-    print("\n=== Réponse ===")
-    print(answer)
+    def generate(self, question, retrieved, system_prompt=None,
+                 max_new_tokens=256, temperature=0.7, top_p=0.95):
+        prompt = self._build_prompt(question, retrieved, system_prompt)
+        inputs = self.tokenizer(prompt, return_tensors="pt", truncation=True).to(self.device)
+        outputs = self.model.generate(
+            **inputs,
+            max_new_tokens=max_new_tokens,
+            do_sample=True,
+            top_p=top_p,
+            temperature=temperature
+        )
+        return self.tokenizer.decode(outputs[0], skip_special_tokens=True)

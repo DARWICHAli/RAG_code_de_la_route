@@ -1,113 +1,146 @@
 """
-RAG Orchestrator — Code de la Route
------------------------------------
-Pipeline complet:
-1. Retriever (FAISS + embeddings)
-2. Generator (Hugging Face seq2seq)
-3. Safety Layer
-4. Logging (JSON)
+RAG Text Generator — Code de la Route
+-------------------------------------
+- Combine les passages récupérés avec la question
+- Construit un prompt contextuel pour génération HuggingFace
+- Gère à la fois les modèles Seq2Seq (ex: FLAN-T5) et Causal LM (ex: Mistral, LLaMA)
 """
 
 import argparse
-import json
-from datetime import datetime
-from pathlib import Path
-
-from src.retrieval.retriever import RAGRetriever
-from src.generation.generate_hf import HFGenerator
+import torch
+from transformers import (
+    AutoTokenizer,
+    AutoModelForSeq2SeqLM,
+    AutoModelForCausalLM,
+)
+from typing import List, Dict
+from src.retrieval.retriever import RAGRetriever  # intégré pour test complet
 from src.safety.filters import is_safe_question, sanitize_response
 
-LOG_FILE = Path("logs/rag_queries.json")
-LOG_FILE.parent.mkdir(exist_ok=True)
 
-def log_query(query, retrieved, answer, retriever_model, generator_model, top_k):
-    """Append query, context, answer and params to JSON log"""
-    entry = {
-        "timestamp": datetime.utcnow().isoformat(),
-        "query": query,
-        "retrieved": [
-            {"page": r["page"], "score": r["score"], "excerpt": r["text"][:250]}
-            for r in retrieved
-        ],
-        "answer": answer,
-        "retriever_model": retriever_model,
-        "generator_model": generator_model,
-        "top_k": top_k
-    }
+class RAGGenerator:
+    def __init__(
+        self,
+        model_name: str = "google/flan-t5-base",
+        device: str = None,
+        max_new_tokens: int = 256,
+        temperature: float = 0.3,
+        top_p: float = 0.9,
+    ):
+        """
+        Initialise le modèle et le tokenizer Hugging Face.
+        """
+        print(f"[INFO] Chargement du modèle HuggingFace : {model_name}")
+        self.model_name = model_name
+        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-    if LOG_FILE.exists():
-        data = json.loads(LOG_FILE.read_text())
-    else:
-        data = []
+        # Détection automatique du type de modèle
+        if "t5" in model_name.lower() or "flan" in model_name.lower():
+            self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+            self.is_seq2seq = True
+        else:
+            self.model = AutoModelForCausalLM.from_pretrained(model_name)
+            self.is_seq2seq = False
 
-    data.append(entry)
-    LOG_FILE.write_text(json.dumps(data, indent=2, ensure_ascii=False))
+        # Gestion du device
+        self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        self.model.to(self.device)
+        self.model.eval()
 
+        self.max_new_tokens = max_new_tokens
+        self.temperature = temperature
+        self.top_p = top_p
 
+        print(f"[INFO] Modèle prêt sur {self.device} ({'Seq2Seq' if self.is_seq2seq else 'Causal LM'})")
 
-def run_rag_pipeline(
-    query: str,
-    retriever_model: str,
-    generator_model: str,
-    top_k: int = 3,
-):
-    """Run end-to-end retrieval + generation pipeline with safety and logging"""
-    print("=== 🚦 RAG Code de la Route ===")
+    def build_prompt(self, question: str, retrieved_chunks: List[Dict], system_prompt: str) -> str:
+        """
+        Construit un prompt structuré à partir du contexte et de la question.
+        """
+        context_blocks = []
+        for r in retrieved_chunks:
+            context_blocks.append(f"[Source p.{r['page']}] {r['text']}")
 
-    # Safety check
-    if not is_safe_question(query):
-        print("❌ Question hors-sujet détectée !")
-        return "Désolé, je ne peux répondre qu'aux questions sur le Code de la Route."
+        context = "\n".join(context_blocks)
+        prompt = (
+            f"{system_prompt}\n\n"
+            f"CONTEXTE :\n{context}\n\n"
+            f"QUESTION : {question}\n\n"
+            "RÉPONSE :"
+        )
+        return prompt
 
-    # 1️⃣ Load retriever
-    retriever = RAGRetriever(model_name=retriever_model)
-    print(f"[INFO] Retriever loaded ({retriever_model})")
+    def generate(self, question: str, retrieved_chunks: List[Dict], system_prompt: str = "") -> str:
+        """
+        Génère une réponse basée sur les passages récupérés.
+        """
+        prompt = self.build_prompt(question, retrieved_chunks, system_prompt)
 
-    # 2️⃣ Load generator
-    generator = HFGenerator(model_name=generator_model)
-    print(f"[INFO] Generator loaded ({generator_model})")
+        # Tronquer si le prompt est trop long
+        inputs = self.tokenizer(
+            prompt,
+            return_tensors="pt",
+            truncation=True,
+            max_length=2048,
+        ).to(self.device)
 
-    # 3️⃣ Retrieve top-k chunks
-    print(f"\n[INFO] Retrieving top {top_k} relevant chunks...")
-    retrieved = retriever.retrieve(query, top_k=top_k)
+        with torch.no_grad():
+            if self.is_seq2seq:
+                outputs = self.model.generate(
+                    **inputs,
+                    max_new_tokens=self.max_new_tokens,
+                    temperature=self.temperature,
+                    top_p=self.top_p,
+                )
+            else:
+                outputs = self.model.generate(
+                    **inputs,
+                    max_new_tokens=self.max_new_tokens,
+                    temperature=self.temperature,
+                    top_p=self.top_p,
+                    do_sample=True,
+                )
 
-    print("\n=== 🔍 Retrieved contexts ===")
-    for i, r in enumerate(retrieved, 1):
-        text_preview = r['text'][:250].replace("\n", " ") + "..."
-        print(f"\n[{i}] Page {r['page']} | Score {r['score']:.3f}")
-        print(f"Excerpt: {text_preview}")
-
-    # 4️⃣ Generate answer
-    print(f"\n[INFO] Generating answer with {generator_model} model...")
-    answer = generator.generate(query, retrieved)
-
-    # 5️⃣ Apply safety filter on output
-    answer = sanitize_response(answer)
-
-    print("\n=== 💬 Final Answer ===")
-    print(answer)
-
-    # 6️⃣ Log query
-    log_query(query, retrieved, answer, retriever_model, generator_model, top_k)
-
-    return answer
-
+        answer = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+        return answer.strip()
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Run RAG chatbot for Code de la Route")
-    parser.add_argument("--query", type=str, default="Quelles sont les règles concernant le permis à points ?")
-    parser.add_argument("--retriever_model", type=str, default="sentence-transformers/all-MiniLM-L6-v2")
-    parser.add_argument("--generator_model", type=str, default="google/flan-t5-base")
-    parser.add_argument("--top_k", type=int, default=3)
+    parser = argparse.ArgumentParser(description="Test de génération RAG sur le Code de la Route")
+    parser.add_argument("--QUERY", type=str, required=True, help="Question à poser")
+    parser.add_argument("--model", type=str, default="google/flan-t5-base", help="Modèle Hugging Face à utiliser")
+    parser.add_argument("--index_path", type=str, default="data/index/faiss.index", help="Chemin vers l’index FAISS")
+    parser.add_argument("--top_k", type=int, default=5, help="Nombre de passages à récupérer")
     args = parser.parse_args()
 
-    run_rag_pipeline(
-        query=args.query,
-        retriever_model=args.retriever_model,
-        generator_model=args.generator_model,
-        top_k=args.top_k,
+    if not is_safe_question(args.QUERY):
+        print("⚠️ Question non conforme. Veuillez reformuler.")
+        return
+
+    retriever = RAGRetriever(index_path=args.index_path)
+    generator = RAGGenerator(model_name=args.model)
+
+    system_prompt = (
+        "Tu es un assistant **français** expert du Code de la route. "
+        "Réponds **uniquement en français**, de façon claire et concise. "
+        "Utilise uniquement les passages fournis et cite les pages sources."
     )
+
+
+
+    retrieved = retriever.retrieve(args.QUERY, top_k=args.top_k)
+    if not retrieved:
+        print("Aucune information trouvée dans la base.")
+        return
+
+    answer = generator.generate(args.QUERY, retrieved, system_prompt)
+    print("\n=== Question ===")
+    print(args.QUERY)
+    print("\n=== Réponse ===")
+    print(sanitize_response(answer))
+    print("\n=== Sources ===")
+    for r in retrieved:
+        print(f"- Page {r['page']} (score: {r['score']:.4f})")
 
 
 if __name__ == "__main__":

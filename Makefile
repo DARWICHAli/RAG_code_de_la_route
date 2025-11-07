@@ -7,9 +7,10 @@
 # === Configuration ===
 PDF=data/raw/code_de_la_route.pdf
 CHUNKS=data/processed/chunks.jsonl
-INDEX_DIR=data/index
+INDEX_DIR=data/index/faiss.index
 MODEL_EMBED=sentence-transformers/all-MiniLM-L6-v2
-MODEL_GEN=google/flan-t5-base
+#MODEL_GEN=google/flan-t5-base
+MODEL_GEN=plguillou/t5-base-fr-sum-cnndm
 QUERY=Que faire en cas d'accident ?
 
 _QUERY := $(if $(QUERY),$(QUERY),$(DEFAULT_QUERY))
@@ -34,25 +35,33 @@ ingest:
 # ============================================
 index:
 	@echo "[INFO] 🔍 Building FAISS index..."
+# 	python -m src.data.indexing \
+# 		--chunks $(CHUNKS) \
+# 		--out_dir $(INDEX_DIR) \
+# 		--model_name $(MODEL_EMBED)
 	python -m src.data.indexing \
 		--chunks $(CHUNKS) \
-		--out_dir $(INDEX_DIR) \
-		--model_name $(MODEL_EMBED)
+		--model $(MODEL_EMBED) \
+		--index_path $(INDEX_DIR)
+
+
+
 
 # ============================================
 # 🤖 RAG generation (retrieval + generation)
 # ============================================
 rag:
-	@echo "[INFO] 💬 Running Hugging Face RAG pipeline..."
+	@echo "[STEP] Génération RAG (retrieval + génération Hugging Face)..."
 # 	python -m src.generation.generate \
+# 		--query "$(_QUERY)" \
 # 		--retriever_model $(MODEL_EMBED) \
-# 		--generator_model $(MODEL_GEN)
+# 		--generator_model $(MODEL_GEN) \
+# 		--top_k 5
 	python -m src.generation.generate \
-		--query "$(_QUERY)" \
-		--retriever_model $(MODEL_EMBED) \
-		--generator_model $(MODEL_GEN) \
+		--QUERY "$(_QUERY)" \
+		--model $(MODEL_GEN) \
+		--index_path $(INDEX_DIR) \
 		--top_k 5
-
 
 
 # ============================================
@@ -67,7 +76,12 @@ serve:
 # ============================================
 eval:
 	@echo "[INFO] 📊 Running evaluation pipeline..."
-	python -m src.eval.evaluate --config experiments/exp_rag_default.yaml
+# 	python -m src.eval.evaluate \
+# 		--config experiments/exp_rag_default.yaml
+	python src/eval/evaluate.py \
+		--model_name google/flan-t5-base 
+		--index_path $(INDEX) 
+		--holdout_path $(HOLDOUT)
 
 # ============================================
 # 🧹 Clean artifacts
@@ -75,3 +89,11 @@ eval:
 clean:
 	@echo "[INFO] 🧼 Cleaning generated artifacts..."
 	rm -rf data/processed/* data/index/* mlruns/
+
+# ============================================
+# 🧹 Clean logs
+# ============================================
+
+clean-logs:
+	@echo "[INFO] 🧼 Cleaning log files..."
+	rm -f logs/api_requests.log
