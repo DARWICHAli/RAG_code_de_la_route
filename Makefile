@@ -8,7 +8,7 @@
 PDF=data/raw/code_de_la_route.pdf
 CHUNKS=data/processed/chunks.jsonl
 INDEX_DIR=data/index/faiss.index
-MODEL_EMBED=sentence-transformers/all-MiniLM-L6-v2
+MODEL_EMBED=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
 #MODEL_GEN=google/flan-t5-base
 MODEL_GEN=plguillou/t5-base-fr-sum-cnndm
 QUERY=Que faire en cas d'accident ?
@@ -35,10 +35,6 @@ ingest:
 # ============================================
 index:
 	@echo "[INFO] 🔍 Building FAISS index..."
-# 	python -m src.data.indexing \
-# 		--chunks $(CHUNKS) \
-# 		--out_dir $(INDEX_DIR) \
-# 		--model_name $(MODEL_EMBED)
 	python -m src.data.indexing \
 		--chunks $(CHUNKS) \
 		--model $(MODEL_EMBED) \

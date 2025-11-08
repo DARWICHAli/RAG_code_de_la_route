@@ -27,7 +27,7 @@ def load_chunks(chunks_path):
     return chunks
 
 
-def build_faiss_index(chunks, model_name="all-MiniLM-L6-v2", index_path="data/index/faiss.index"):
+def build_faiss_index(chunks, model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2", index_path="data/index/faiss.index"):
     """
     Encode les chunks et construit l'index FAISS.
     """
