@@ -34,7 +34,7 @@ def build_faiss_index(chunks, model_name="sentence-transformers/paraphrase-multi
     print(f"[INFO] Chargement du modèle d'embedding : {model_name}")
     model = SentenceTransformer(model_name)
 
-    texts = [chunk["text"] for chunk in chunks]
+    texts = [chunk["texte"] for chunk in chunks]
     print("[INFO] Encodage des textes...")
     embeddings = model.encode(texts, convert_to_numpy=True, show_progress_bar=True, batch_size=64)
 

@@ -14,7 +14,7 @@ from pathlib import Path
 
 
 class RAGRetriever:
-    def __init__(self, index_path="data/index/faiss.index", model_name="all-MiniLM-L6-v2", top_k=5):
+    def __init__(self, index_path="data/index/faiss.index", model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2", top_k=5):
         self.index_path = Path(index_path)
         self.meta_path = self.index_path.parent / "metadata.jsonl"
         self.model_name = model_name
@@ -56,15 +56,15 @@ class RAGRetriever:
                 continue
             meta = self.metadata[idx]
             results.append({
-                "page": meta.get("page"),
-                "section": meta.get("section"),
-                "chunk_id": meta.get("chunk_id"),
-                "text": meta.get("text")[:500] + "..." if len(meta.get("text", "")) > 500 else meta.get("text"),
+                "num": meta.get("num"),
+                "titresTM": meta.get("titresTM"),
+                "id": meta.get("id"),
+                "text": meta.get("texte"),
                 "score": float(score)
             })
 
-        print(f"[INFO] {len(results)} passages récupérés pour la requête : '{query[:50]}...'")
-        for r in results:
-            print(f"  - p.{r['page']} ({r['section']}) [score={r['score']:.3f}]")
+        # print(f"[INFO] {len(results)} passages récupérés pour la requête : '{query[:50]}...'")
+        # for r in results:
+        #     print(f"  - p.{r['num']} ({r['titresTM']}) [score={r['score']:.3f}]")
 
         return results

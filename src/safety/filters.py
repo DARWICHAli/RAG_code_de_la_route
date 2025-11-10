@@ -13,7 +13,17 @@ import re
 SAFE_KEYWORDS = [
     "permis", "conduite", "véhicule", "points", "accident",
     "circulation", "infractions", "règles", "sécurité routière",
-    "contrôle", "code de la route", "amende", "signalisation","piéton","passage","Stationnement","Stationner"
+    "contrôle", "code de la route", "amende", "signalisation","piéton","passage",
+    "Stationnement","Stationner","agglomération","priorité","cédez le passage",
+    "limitations de vitesse","alcoolémie","drogue au volant","ceinture de sécurité",
+    "téléphone au volant","feux de signalisation","rond-point","autoroute","voie",
+    "distance de sécurité","clignotant","angle mort","freinage","assurance",
+    "visibilité","conditions météorologiques","équipements obligatoires",
+    "contrôle technique","permis probatoire","conduite accompagnée","éconduite",
+    "transport de marchandises","transport de personnes","vélo","moto","cycliste",
+    "piéton","passager","usager","infrastructure routière","zone 30","zone piétonne",
+    "voie rapide","voie express","péage","station-service","aire de repos",
+    "vitesse","autorisée","maximale"
 ]
 
 # Optional: minimum fraction of keywords required to accept question

@@ -6,11 +6,11 @@
 
 # === Configuration ===
 PDF=data/raw/code_de_la_route.pdf
-CHUNKS=data/processed/chunks.jsonl
+CHUNKS=data/processed/code_route_articles_V0.jsonl
 INDEX_DIR=data/index/faiss.index
 MODEL_EMBED=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
 #MODEL_GEN=google/flan-t5-base
-MODEL_GEN=plguillou/t5-base-fr-sum-cnndm
+MODEL_GEN=mistralai/Mistral-7B-Instruct-v0.3
 QUERY=Que faire en cas d'accident ?
 
 _QUERY := $(if $(QUERY),$(QUERY),$(DEFAULT_QUERY))
@@ -57,7 +57,7 @@ rag:
 		--QUERY "$(_QUERY)" \
 		--model $(MODEL_GEN) \
 		--index_path $(INDEX_DIR) \
-		--top_k 5
+		--top_k 2
 
 
 # ============================================
