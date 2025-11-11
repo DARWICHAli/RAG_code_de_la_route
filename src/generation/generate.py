@@ -23,7 +23,7 @@ class RAGGenerator:
         self.model_name = model_name
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-        if "t5" in model_name.lower() or "flan" in model_name.lower():
+        if "t5" in model_name.lower() or "flan" in model_name.lower() or "zephyr" in model_name.lower():
             self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
             self.is_seq2seq = True
         else:
