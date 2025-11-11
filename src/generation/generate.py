@@ -20,6 +20,7 @@ class RAGGenerator:
         top_p: float = 0.9,
     ):
         print(f"[INFO] Chargement du modèle HuggingFace : {model_name}")
+        self.model_name = model_name
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 
         if "t5" in model_name.lower() or "flan" in model_name.lower():
