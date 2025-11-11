@@ -23,7 +23,7 @@ class RAGGenerator:
         self.model_name = model_name
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-        if "t5" in model_name.lower() or "flan" in model_name.lower() or "zephyr" in model_name.lower():
+        if "t5" in model_name.lower() or "flan" in model_name.lower():
             self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
             self.is_seq2seq = True
         else:
@@ -45,20 +45,19 @@ class RAGGenerator:
         texts = [chunk["text"].strip() for chunk in retrieved_chunks]
         context = "\n".join(texts)
         if "zephyr" in self.model_name.lower() or "chat" in self.model_name.lower():
-            # 🧩 ChatML format for Zephyr-like models
             prompt = (
                 f"<|system|>\n{system_prompt}\n"
                 f"<|user|>\nCONTEXTE:\n{context}\n\nQUESTION:\n{question}\n"
                 f"<|assistant|>\n"
             )
         else:
-            # ✅ Default for Mistral / FLAN / T5
             prompt = (
                 f"{system_prompt}\n\n"
                 f"CONTEXTE:\n{context}\n\n"
                 f"QUESTION: {question}\n\n"
                 "RÉPONSE:"
             )
+        return prompt
 
     def generate(self, question: str, retrieved_chunks: List[Dict], system_prompt: str = "") -> str:
         #max_tokens = 512 if self.is_seq2seq else 2048
@@ -73,7 +72,7 @@ class RAGGenerator:
             ).to(self.device)
         else:
             inputs = self.tokenizer(
-                prompt,
+                text=prompt,
                 return_tensors="pt",
                 truncation=True,
                 max_length=min(2048, self.tokenizer.model_max_length),
