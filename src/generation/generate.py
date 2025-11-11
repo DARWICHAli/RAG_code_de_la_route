@@ -64,12 +64,21 @@ class RAGGenerator:
         #max_tokens = 512 if self.is_seq2seq else 2048
         prompt = self.build_prompt(question, retrieved_chunks, system_prompt)
 
-        inputs = self.tokenizer(
-            prompt,
-            return_tensors="pt",
-            truncation=True,
-            max_length=min(2048, self.tokenizer.model_max_length),
-        ).to(self.device)
+        if self.is_seq2seq:
+            inputs = self.tokenizer(
+                text=prompt,
+                return_tensors="pt",
+                truncation=True,
+                max_length=512,
+            ).to(self.device)
+        else:
+            inputs = self.tokenizer(
+                prompt,
+                return_tensors="pt",
+                truncation=True,
+                max_length=min(2048, self.tokenizer.model_max_length),
+            ).to(self.device)
+
 
         with torch.no_grad():
             if self.is_seq2seq:
