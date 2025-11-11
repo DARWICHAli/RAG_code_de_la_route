@@ -39,7 +39,7 @@ class RAGGenerator:
 
         print(f"[INFO] Modèle prêt sur {self.device} ({'Seq2Seq' if self.is_seq2seq else 'Causal LM'})")
 
-    def build_prompt(self, question: str, retrieved_chunks: List[Dict], system_prompt: str, max_tokens: int = None) -> str:
+    def build_prompt(self, question: str, retrieved_chunks: List[Dict], system_prompt: str) -> str:
         # Nettoyage simple
         texts = [chunk["text"].strip() for chunk in retrieved_chunks]
         context = "\n".join(texts)
@@ -50,28 +50,17 @@ class RAGGenerator:
             f"Question : {question}\n"
             "Réponse :"
         )
-
-        # Tronquer si nécessaire (approximatif)
-        if max_tokens and self.tokenizer:
-            tokens = self.tokenizer(prompt, truncation=False, return_tensors="pt")["input_ids"][0]
-            if len(tokens) > max_tokens:
-                # laisser question + "Réponse :" intact
-                q_len = len(self.tokenizer(f"Question : {question}\nRéponse :", return_tensors="pt")["input_ids"][0])
-                ctx_tokens = tokens[: max_tokens - q_len]
-                prompt = self.tokenizer.decode(ctx_tokens, skip_special_tokens=True)
-                prompt += f"\nQuestion : {question}\nRéponse :"
-
         return prompt
 
     def generate(self, question: str, retrieved_chunks: List[Dict], system_prompt: str = "") -> str:
-        max_tokens = 512 if self.is_seq2seq else 2048
-        prompt = self.build_prompt(question, retrieved_chunks, system_prompt, self.tokenizer, max_tokens)
+        #max_tokens = 512 if self.is_seq2seq else 2048
+        prompt = self.build_prompt(question, retrieved_chunks, system_prompt)
 
         inputs = self.tokenizer(
             prompt,
             return_tensors="pt",
             truncation=True,
-            max_length=max_tokens,
+            max_length=min(2048, self.tokenizer.model_max_length),
         ).to(self.device)
 
         with torch.no_grad():
