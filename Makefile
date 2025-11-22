@@ -8,10 +8,12 @@
 PDF=data/raw/code_de_la_route.pdf
 CHUNKS=data/processed/code_route_articles_V0.jsonl
 INDEX_DIR=data/index/faiss.index
-MODEL_EMBED=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
-#MODEL_GEN=google/flan-t5-base
-MODEL_GEN=mistralai/Mistral-7B-Instruct-v0.3
-QUERY=Que faire en cas d'accident ?
+#MODEL_EMBED=sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+MODEL_EMBED=sentence-transformers/all-MiniLM-L6-v2
+MODEL_GEN=google/flan-t5-base
+#MODEL_GEN=mistralai/Mistral-7B-Instruct-v0.3
+#QUERY=Quelles sont les sanctions pour conduite sans permis ?
+QUERY=Quoi faire lorsqu'il n'existe pas de moyen efficace pour éliminer un risque grave?
 
 _QUERY := $(if $(QUERY),$(QUERY),$(DEFAULT_QUERY))
 
@@ -48,13 +50,9 @@ index:
 # ============================================
 rag:
 	@echo "[STEP] Génération RAG (retrieval + génération Hugging Face)..."
-# 	python -m src.generation.generate \
-# 		--query "$(_QUERY)" \
-# 		--retriever_model $(MODEL_EMBED) \
-# 		--generator_model $(MODEL_GEN) \
-# 		--top_k 5
 	python -m src.generation.generate \
 		--QUERY "$(_QUERY)" \
+		--MODEL_EMBED $(MODEL_EMBED) \
 		--model $(MODEL_GEN) \
 		--index_path $(INDEX_DIR) \
 		--top_k 2
@@ -65,6 +63,7 @@ rag:
 # ============================================
 serve:
 	@echo "[INFO] 🚀 Starting FastAPI server..."
+	INDEX_PATH=$(INDEX_DIR) MODEL_GEN=$(MODEL_GEN) MODEL_EMBED=$(MODEL_EMBED) \
 	uvicorn src.api.app:app --host 0.0.0.0 --port 8000 --reload
 
 # ============================================

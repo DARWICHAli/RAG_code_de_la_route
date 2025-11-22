@@ -106,6 +106,7 @@ class RAGGenerator:
 def main():
     parser = argparse.ArgumentParser(description="Test de génération RAG sur le Code de la Route")
     parser.add_argument("--QUERY", type=str, required=True, help="Question à poser")
+    parser.add_argument("--MODEL_EMBED", type=str, default="sentence-transformers/all-MiniLM-L6-v2", help="Modèle d'embedding pour le récupérateur")
     parser.add_argument("--model", type=str, default="google/flan-t5-base", help="Modèle Hugging Face à utiliser")
     parser.add_argument("--index_path", type=str, default="data/index/faiss.index", help="Chemin vers l’index FAISS")
     parser.add_argument("--top_k", type=int, default=3, help="Nombre de passages à récupérer")
@@ -115,7 +116,7 @@ def main():
     #     print("⚠️ Question non conforme. Veuillez reformuler.")
     #     return
 
-    retriever = RAGRetriever(index_path=args.index_path)
+    retriever = RAGRetriever(index_path=args.index_path,model_name=args.MODEL_EMBED)
     generator = RAGGenerator(model_name=args.model)
 
     system_prompt = (
