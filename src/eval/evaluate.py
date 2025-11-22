@@ -99,7 +99,7 @@ def evaluate(
             "question": question,
             "expected": expected,
             "answer": answer,
-            "retrieved_pages": [r["page"] for r in retrieved],
+            "num": [r["num"] for r in retrieved],
             "metrics": metrics
         })
 
