@@ -77,6 +77,16 @@ eval:
 		--holdout_path $(HOLDOUT)
 
 # ============================================
+# Docker integration
+# ============================================
+
+docker-build:
+	docker build -t rag-code-route .
+
+docker-run:
+	docker run -p 8000:8000 rag-code-route		
+
+# ============================================
 # 🧹 Clean artifacts
 # ============================================
 clean:
